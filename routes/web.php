@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'index');
 Route::view('/login', 'user.login');
 Route::view('/register', 'user.register');
+Route::view('/reset-password', 'user.reset-password');
