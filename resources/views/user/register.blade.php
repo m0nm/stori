@@ -1,7 +1,8 @@
 <x-layout>
   <div class="py-8 grid place-items-center">
     <form
-      action=""
+      action="/users"
+      method="POST"
       class="w-4/5 md:w-1/3 p-2 md:p-8 mt-auto bg-primary border rounded-lg"
     >
       @csrf
@@ -31,9 +32,14 @@
       <div class="mx-auto max-w-lg">
         <div class="py-1">
           <span class="px-1 text-sm text-gray-600">Username</span>
-
+          
+          @error('name')
+          <p class="px-1 text-sm text-red-500">{{$message}}</p>
+           @enderror
+          
           <input
-            placeholder=""
+            name="name"
+            value="{{ old('name') }}"
             type="text"
             class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 placeholder-gray-600 shadow-sm focus:border-gray-600 focus:bg-white focus:placeholder-gray-500 focus:outline-none"
           />
@@ -42,9 +48,14 @@
         {{-- email --}}
         <div class="py-1">
           <span class="px-1 text-sm text-gray-600">Email</span>
+  
+          @error('email')
+          <p class="px-1 text-sm text-red-500">{{$message}}</p>
+           @enderror
 
           <input
-            placeholder=""
+            name="email"
+            value="{{ old('email') }}"
             type="email"
             class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 placeholder-gray-600 shadow-sm focus:border-gray-600 focus:bg-white focus:placeholder-gray-500 focus:outline-none"
           />
@@ -54,10 +65,14 @@
         <div class="py-1">
           <span class="px-1 text-sm text-gray-600">Password</span>
 
+          @error('password')
+          <p class="px-1 text-sm text-red-500">{{$message}}</p>
+           @enderror
+
           <input
-            placeholder=""
             type="password"
-            x-model="password"
+            name="password"
+            value="{{ old('password') }}"
             class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 placeholder-gray-600 shadow-sm focus:border-gray-600 focus:bg-white focus:placeholder-gray-500 focus:outline-none"
           />
         </div>
@@ -66,10 +81,14 @@
         <div class="py-1">
           <span class="px-1 text-sm text-gray-600">Password Confirm</span>
 
+          @error('password_confirmation')
+          <p class="px-1 text-sm text-red-500">{{$message}}</p>
+           @enderror
+
           <input
             placeholder=""
             type="password"
-            x-model="password_confirm"
+            name="password_confirmation"
             class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 placeholder-gray-600 shadow-sm focus:border-gray-600 focus:bg-white focus:placeholder-gray-500 focus:outline-none"
           />
         </div>

@@ -1,5 +1,1 @@
-<x-layout >
-    
-    
-    
-</x-layout>
+<x-layout> @include("partials._header") </x-layout>

@@ -7,7 +7,7 @@
       @csrf
 
       {{-- lock icon --}}
-      <div class="flex justify-center w-full">
+      <div class="flex justify-center w-full mb-4">
         <p class="fa-solid fa-lock text-4xl"></p>
       </div>
 
