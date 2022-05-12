@@ -17,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 // user routes
 Route::get('/login', [UserController::class, 'login'])->middleware('guest');
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
+Route::get('/logout', [UserController::class, 'logout'])->middleware('auth');
 Route::post('/users', [UserController::class, 'store']);
+Route::post('/login', [UserController::class, 'auth']);
+
 
 
 Route::view('/', 'index');

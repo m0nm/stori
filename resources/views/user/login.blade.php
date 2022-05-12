@@ -1,7 +1,8 @@
 <x-layout>
   <div class="py-8 grid place-items-center">
     <form
-      action=""
+      action="/login"
+      method="post"
       class="w-4/5 md:w-1/3 px-2 md:p-8 mt-auto bg-primary border rounded-lg"
     >
       @csrf
@@ -27,13 +28,18 @@
 
       <p class="text-center text-gray-600 mt-2">__________ or __________</p>
 
-      {{-- username --}}
+      {{-- username or email --}}
       <div class="mx-auto max-w-lg">
         <div class="py-1">
           <span class="px-1 text-sm text-gray-600">Username or Email</span>
 
+          @error('login')
+          <p class="text-red-500">{{ $message }}</p>
+          @enderror
+
           <input
-            placeholder=""
+            name="login"
+            value="{{ old('username') ?: old('email') }}"
             type="text"
             class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 placeholder-gray-600 shadow-sm focus:border-gray-600 focus:bg-white focus:placeholder-gray-500 focus:outline-none"
           />
@@ -43,10 +49,14 @@
         <div class="py-1">
           <span class="px-1 text-sm text-gray-600">Password</span>
 
+          @error('password')
+          <p class="text-red-500">{{ $message }}</p>
+          @enderror
+
           <input
-            placeholder=""
             type="password"
-            x-model="password"
+            name="password"
+            value="{{ old('password') }}"
             class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 placeholder-gray-600 shadow-sm focus:border-gray-600 focus:bg-white focus:placeholder-gray-500 focus:outline-none"
           />
         </div>

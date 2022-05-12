@@ -38,8 +38,8 @@
            @enderror
           
           <input
-            name="name"
-            value="{{ old('name') }}"
+            name="username"
+            value="{{ old('username') }}"
             type="text"
             class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 placeholder-gray-600 shadow-sm focus:border-gray-600 focus:bg-white focus:placeholder-gray-500 focus:outline-none"
           />
@@ -89,6 +89,7 @@
             placeholder=""
             type="password"
             name="password_confirmation"
+            value="{{ old('password_confirmation') }}"
             class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 placeholder-gray-600 shadow-sm focus:border-gray-600 focus:bg-white focus:placeholder-gray-500 focus:outline-none"
           />
         </div>
