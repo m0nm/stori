@@ -1,9 +1,11 @@
-<header class="mx-3 mb-7 mt-12 px-2 text-sm font-medium">
+<header class="mb-7 mt-12 px-2 text-sm font-medium">
   <h1 class="text-center md:text-left text-2xl font-bold mb-8">
     Top Rated Posts
   </h1>
   <div class="grid grid-cols-1 md:grid-cols-6 gap-2">
-    <div class="col-span-3 max-h-[14rem] relative overflow-hidden rounded-xl">
+    <div
+      class="col-span-3 max-h-[14rem] relative overflow-hidden rounded-xl cursor-pointer"
+    >
       <div
         class="w-full h-1/2 px-4 pt-6 absolute bottom-0 left-0 bg-gradient-to-b from-transparent to-black-rgba"
       >
@@ -30,7 +32,9 @@
       />
     </div>
 
-    <div class="col-span-3 max-h-[14rem] relative overflow-hidden rounded-xl">
+    <div
+      class="col-span-3 max-h-[14rem] relative overflow-hidden rounded-xl cursor-pointer"
+    >
       <div
         class="w-full h-1/2 px-4 pt-6 absolute bottom-0 left-0 bg-gradient-to-b from-transparent to-black-rgba"
       >
@@ -57,7 +61,9 @@
       />
     </div>
 
-    <div class="col-span-2 max-h-[16rem] relative overflow-hidden rounded-xl">
+    <div
+      class="col-span-2 max-h-[16rem] relative overflow-hidden rounded-xl cursor-pointer"
+    >
       <div
         class="w-full h-1/2 px-4 pt-6 absolute bottom-0 left-0 bg-gradient-to-b from-transparent to-black-rgba"
       >
@@ -84,7 +90,9 @@
       />
     </div>
 
-    <div class="col-span-2 max-h-[16rem] relative overflow-hidden rounded-xl">
+    <div
+      class="col-span-2 max-h-[16rem] relative overflow-hidden rounded-xl cursor-pointer"
+    >
       <div
         class="w-full h-1/2 px-4 pt-6 absolute bottom-0 left-0 bg-gradient-to-b from-transparent to-black-rgba"
       >
@@ -111,7 +119,9 @@
       />
     </div>
 
-    <div class="col-span-2 max-h-[16rem] relative overflow-hidden rounded-xl">
+    <div
+      class="col-span-2 max-h-[16rem] relative overflow-hidden rounded-xl cursor-pointer"
+    >
       <div
         class="w-full h-1/2 px-4 pt-6 absolute bottom-0 left-0 bg-gradient-to-b from-transparent to-black-rgba"
       >
