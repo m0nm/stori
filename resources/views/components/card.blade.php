@@ -23,8 +23,8 @@
     </p>
 
     <div class="my-3">
+      
       @foreach (explode(',', $post->tags) as $tag )
-        
       <span
         class="rounded px-1 py-0.5 bg-active text-sm text-white font-bold mr-1"
         >{{ $tag }}</span

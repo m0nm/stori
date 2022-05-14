@@ -6,29 +6,45 @@
   </a>
   <div class="flex items-center">
     @auth
-    <div x-data="{open: false}" @click="open = !open" class="relative md:mr-4">
-      <i class="fa-solid fa-user text-xl cursor-pointer text-gray-600"></i>
+    <div x-data="{open: false}" class="relative md:mr-4">
+      <i @click="open = !open" class="fa-solid fa-user text-xl cursor-pointer text-gray-600"></i>
 
-      <ul
-        x-show="open"
-        @click.outside="open = false"
-        class="absolute top-8 -left-20 z-10 text-md py-4 shadow-lg"
-      >
-        <li class="flex items-center hover:bg-slate-200 w-full px-2">
-          <i class="fa-solid fa-table-columns mr-1"></i>
-          <a href="" class="font-bold">Dashboard</a>
-        </li>
-        <li class="flex items-center hover:bg-slate-200 w-full px-2 my-2">
-          <i class="fa-solid fa-gear mr-1"></i>
-          <a href="" class="font-bold">Settings</a>
-        </li>
-        <li class="flex items-center hover:bg-slate-200 w-full px-2">
-          <i class="fa-solid fa-right-from-bracket mr-1"></i>
-          <a href="/logout" class="font-bold">Logout</a>
-        </li>
-      </ul>
-    </div>
-    @endauth @guest
+      <div x-show="open" @click.outside="open = false" class="absolute top-10 right-8 translate-x-1/2 z-10 bg-white divide-y divide-gray-200 rounded shadow-lg">
+        
+        <div class="py-1">
+          <a href="#" class="block px-4 py-2 font-bold text-center text-sm text-gray-900 hover:underline hover:bg-gray-100">{{ '@' . auth()->user()->username }}</a>
+        </div>
+       
+        <ul class="py-1 text-sm text-gray-900">
+ 
+          <li>
+            <a href="#" class="px-4 py-2 flex items-center hover:underline hover:bg-gray-100 ">
+              <img src="{{ asset('/svg/dashboard.svg') }}" class="w-3.5 h-3.5 mr-1" alt="">  
+              Dashboard
+            </a>
+          </li>
+ 
+          <li>
+            <a href="/settings" class="px-4 py-2 flex items-center hover:underline hover:bg-gray-100 ">
+              <img src="{{ asset('/svg/settings.svg') }}" class="w-3.5 h-3.5 mr-1" alt="">  
+              Settings
+            </a>
+          </li>
+ 
+          <li>
+            <a href="/logout" class="px-4 py-2 flex items-center hover:underline hover:bg-gray-100 ">
+            <img src="{{ asset('/svg/logout.svg') }}" class="w-3.5 h-3.5 mr-1" alt="">  
+              Logout
+            </a>
+          </li>
+
+        </ul>
+        
+       
+  </div>
+    @endauth
+    
+    @guest
     <a href="/login" class="hidden text-gray-800 md:inline-block font-semibold"
       >Make a story</a
     >

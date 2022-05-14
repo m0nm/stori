@@ -22,6 +22,7 @@ Route::get('/logout', [UserController::class, 'logout'])->middleware('auth');
 Route::post('/users', [UserController::class, 'store']);
 Route::post('/login', [UserController::class, 'auth']);
 Route::view('/reset-password', 'user.reset-password');
+Route::get('/settings', [UserController::class, 'edit'])->middleware('auth');
 
 
 // posts route
