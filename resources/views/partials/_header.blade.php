@@ -1,4 +1,4 @@
-<header class="h-fit mb-7 mt-12 px-2 text-sm font-medium">
+<header class="h-fit mb-40 mt-12 px-2 text-sm font-medium">
   <h1 class="text-center md:text-left text-2xl font-bold mb-8">
     Top Rated Posts
   </h1>

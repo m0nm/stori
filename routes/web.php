@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,8 +21,8 @@ Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 Route::get('/logout', [UserController::class, 'logout'])->middleware('auth');
 Route::post('/users', [UserController::class, 'store']);
 Route::post('/login', [UserController::class, 'auth']);
-
-
-
-Route::view('/', 'index');
 Route::view('/reset-password', 'user.reset-password');
+
+
+// posts route
+Route::get('/', [PostController::class, 'index']);

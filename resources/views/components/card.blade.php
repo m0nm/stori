@@ -1,48 +1,47 @@
 <div
-  class="w-full md:h-[280px] grid grid-cols-1 md:grid-cols-4 shadow-lg border rounded-md cursor-pointer"
+  class="w-full min-h-[280px] mb-10 grid grid-cols-1 md:grid-cols-4 shadow-lg border rounded-md cursor-pointer"
 >
   <!-- blog image -->
   <div
     class="col-span-1 rounded-t h-[200px] md:h-full bg-contain"
     style="
-      background-image: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1399&amp;q=80');
+      background-image: url('{{ $post->bg_img }}');
     "
   ></div>
 
   <!-- blog details -->
   <div class="col-span-3 p-4">
     <h1 class="font-bold text-2xl">
-      Ai is doing magic to make this title a bit longer
+      {{ $post->title }}
     </h1>
-    <span>16 Apr, 2022</span>
+    <span
+      >{{ \Carbon\Carbon::parse($post->created_at)->format('F j, Y') }}</span
+    >
 
-    <p class="mt-6 text-lg max-h-1/4 line-clamp-3">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quasi
-      fugit officia quia fuga ipsum perferendis quibusdam veritatis accusamus
-      architecto. Obcaecati eos recusandae explicabo nihil voluptates laborum
-      nisi fuga eaque tenetur animi!
+    <p class="mt-5 text-lg max-h-1/4 line-clamp-3">
+      {{ $post->body }}
     </p>
 
     <div class="my-3">
+      @foreach (explode(',', $post->tags) as $tag )
+        
       <span
         class="rounded px-1 py-0.5 bg-active text-sm text-white font-bold mr-1"
-        >travel</span
+        >{{ $tag }}</span
       >
-      <span
-        class="rounded px-1 py-0.5 bg-active text-sm text-white font-bold mr-1"
-        >health</span
-      >
+      @endforeach
+     
     </div>
 
     <div class="flex items-center justify-between w-full">
       <a href="" class="flex items-center mt-2">
         <img
-          src="https://blog-pixomatic.s3.appcnt.com/image/22/01/26/61f166e1377d4/_orig/pixomatic_1572877223091.png"
+          src="{{ $post->user->avatar ?? asset('images/user.png') }}"
           alt=""
           class="rounded-full w-7 h-7"
         />
 
-        <span class="ml-2 font-medium text-lg text-gray-600">John Doe</span>
+        <span class="ml-2 font-medium text-lg text-gray-600">{{ $post->user->name ?? $post->user->username }}</span>
       </a>
 
       <span>3 min read</span>
