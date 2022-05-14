@@ -20,9 +20,18 @@
         color: #111;
       }
     </style>
-    
-        <!-- alpine js -->
-  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Alpine Plugins -->
+    <script
+      defer
+      src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <!-- alpine js -->
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
   </head>
   <body class="h-screen w-full">
     {{-- navbar --}}

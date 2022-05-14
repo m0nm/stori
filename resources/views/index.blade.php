@@ -1,11 +1,19 @@
 <x-layout>
-  <div class="w-full md:w-4/5 mx-auto">
+  <div class="w-full h-fit md:w-4/5 mx-auto">
     @include('partials._header')
-
-    <h1 class="text-center md:text-left text-2xl font-bold mb-8">
-      Recent Posts
-    </h1>
-
-    <x-card />
+    
+    <div class="w-full md:flex items-center justify-between mt-24 md:mt-0 mb-8">
+      
+      <h1 class="text-center md:text-left text-2xl font-bold">
+        Recent Posts
+      </h1>
+            
+      @include('partials._search')
+    </div>
+    
+    <div class="md:px-0 px-4 w-full">    
+      <x-card />
+    </div>
+  
   </div>
 </x-layout>
