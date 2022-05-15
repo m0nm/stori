@@ -40,8 +40,9 @@
 
     <div class="col-span-4 font-semibold"><p>John Doe</p></div>
 
-    <div class="col-span-2 grid justify-end">
-      <button class="px-4 text-gray-800 font-bold">Update</button>
+    <div class="col-span-2 flex justify-end items-center">
+      <button class="px-1 text-gray-800 font-bold mr-1">Update</button>
+      <button class="px-4 text-gray-800 font-bold">Visible</button>
     </div>
   </div>
 

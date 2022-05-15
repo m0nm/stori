@@ -41,7 +41,7 @@
             name="login"
             value="{{ old('username') ?: old('email') }}"
             type="text"
-            class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 placeholder-gray-600 shadow-sm focus:border-gray-600 focus:bg-white focus:placeholder-gray-500 focus:outline-none"
+            class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-gray-600 focus:bg-white focus:outline-none"
           />
         </div>
 
@@ -57,7 +57,7 @@
             type="password"
             name="password"
             value="{{ old('password') }}"
-            class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 placeholder-gray-600 shadow-sm focus:border-gray-600 focus:bg-white focus:placeholder-gray-500 focus:outline-none"
+            class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-gray-600 focus:bg-white focus:outline-none"
           />
         </div>
 

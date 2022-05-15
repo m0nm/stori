@@ -32,32 +32,32 @@
       <div class="mx-auto max-w-lg">
         <div class="py-1">
           <span class="px-1 text-sm text-gray-600">Username</span>
-          
+
           @error('name')
-          <p class="px-1 text-sm text-red-500">{{$message}}</p>
-           @enderror
-          
+          <p class="px-1 text-sm text-red-500">{{ $message }}</p>
+          @enderror
+
           <input
             name="username"
             value="{{ old('username') }}"
             type="text"
-            class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 placeholder-gray-600 shadow-sm focus:border-gray-600 focus:bg-white focus:placeholder-gray-500 focus:outline-none"
+            class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-gray-600 focus:bg-white focus:outline-none"
           />
         </div>
 
         {{-- email --}}
         <div class="py-1">
           <span class="px-1 text-sm text-gray-600">Email</span>
-  
+
           @error('email')
-          <p class="px-1 text-sm text-red-500">{{$message}}</p>
-           @enderror
+          <p class="px-1 text-sm text-red-500">{{ $message }}</p>
+          @enderror
 
           <input
             name="email"
             value="{{ old('email') }}"
             type="email"
-            class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 placeholder-gray-600 shadow-sm focus:border-gray-600 focus:bg-white focus:placeholder-gray-500 focus:outline-none"
+            class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-gray-600 focus:bg-white focus:outline-none"
           />
         </div>
 
@@ -66,14 +66,14 @@
           <span class="px-1 text-sm text-gray-600">Password</span>
 
           @error('password')
-          <p class="px-1 text-sm text-red-500">{{$message}}</p>
-           @enderror
+          <p class="px-1 text-sm text-red-500">{{ $message }}</p>
+          @enderror
 
           <input
             type="password"
             name="password"
             value="{{ old('password') }}"
-            class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 placeholder-gray-600 shadow-sm focus:border-gray-600 focus:bg-white focus:placeholder-gray-500 focus:outline-none"
+            class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-gray-600 focus:bg-white focus:outline-none"
           />
         </div>
 
@@ -82,15 +82,14 @@
           <span class="px-1 text-sm text-gray-600">Password Confirm</span>
 
           @error('password_confirmation')
-          <p class="px-1 text-sm text-red-500">{{$message}}</p>
-           @enderror
+          <p class="px-1 text-sm text-red-500">{{ $message }}</p>
+          @enderror
 
           <input
-            placeholder=""
             type="password"
             name="password_confirmation"
             value="{{ old('password_confirmation') }}"
-            class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 placeholder-gray-600 shadow-sm focus:border-gray-600 focus:bg-white focus:placeholder-gray-500 focus:outline-none"
+            class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-gray-600 focus:bg-white focus:outline-none"
           />
         </div>
 

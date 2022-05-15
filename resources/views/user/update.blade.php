@@ -16,6 +16,6 @@
       </li>
     </ul>
 
-    @include('partials._profile')
+    @include('partials._account')
   </div>
 </x-layout>
