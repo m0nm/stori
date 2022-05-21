@@ -63,6 +63,12 @@ class ProfileController extends Controller
             $validFields['avatar'] = $request->file('avatar')->storeAs('avatars', $originalName, 'public');
         }
 
+        // remove avatar image ------->
+        if ($request->has('remove')) {
+            $user->profile->avatar = null;
+            $user->save();
+        }
+
         // update profile ------->
         $user->profile->update($validFields);
 

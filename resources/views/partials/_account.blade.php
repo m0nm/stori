@@ -1,4 +1,10 @@
-<div class="w-full md:w-1/2">
+<form
+  action="users/{{ auth()->user()->id }}/update"
+  method="POST"
+  class="w-full md:w-1/2"
+>
+  @csrf @method('PUT')
+
   <!-- change password -->
   <div>
     <h3 class="text-xl font-bold mt-2 mb-6">Change Password</h3>
@@ -59,4 +65,4 @@
       </button>
     </div>
   </div>
-</div>
+</form>

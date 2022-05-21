@@ -57,8 +57,10 @@
       />
     </div>
     <div class="col-span-4 md:col-span-2 flex ml-auto justify-end items-center">
+      <!-- upload image -->
       <input
         type="file"
+        onchange="form.submit()"
         accept="image/*"
         name="avatar"
         id="avatar"
@@ -71,9 +73,10 @@
         >Upload</label
       >
 
-      <button type="button" class="pl-4 pr-2 text-gray-800 font-bold">
-        Remove
-      </button>
+      <!-- remove image -->        
+        <button type="submit" name="remove" class="pl-4 pr-2 text-gray-800 font-bold">
+          Remove
+        </button>
     </div>
   </div>
 
