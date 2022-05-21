@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -9,16 +10,74 @@ class ProfileController extends Controller
 {
 
     /**
-     * Update the specified resource in storage.
+     * Show the form for editing the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function edit()
+    {
+        $user = User::find(auth()->user()->id)->first();
+
+        $profile = $user->profile;
+
+        return view('user.update')->with(['profile' => $profile]);
+    }
+
+
+
+    /**
+     * Update the specified resource in storage.
+     */
+
     public function update(Request $request, $id)
     {
-        $changes = $request->all();
+        $user = User::find($id)->first();
 
-        $user = User::where('id', '=', $id)->get();
+
+        $fields = $request->all();
+
+        // filtering fields ------->
+        $validFields = [];
+
+        // checkboxes
+        $validFields['email_visible'] = $request->boolean('email_visible');
+        $validFields['birthday_visible'] = $request->boolean('birthday_visible');
+
+
+        // remove the fields that are null
+        foreach ($fields as $key => $value) {
+            // if input values are not null 
+            // and not email so to update email using User model instead of Profile model
+            if ($value !== null && $key !== "email") {
+
+                $validFields[$key] = $value;
+            }
+        }
+
+        // store avatar image -------->
+        $valideAvatar = $request->hasFile('avatar') && $request->file('avatar')->isValid();
+
+        if ($valideAvatar) {
+            $originalName = $request->avatar->getClientOriginalName();
+
+            $validFields['avatar'] = $request->file('avatar')->storeAs('avatars', $originalName, 'public');
+        }
+
+        // update profile ------->
+        $user->profile->update($validFields);
+
+
+        // update email ------->
+        if ($request->email !== $user->email) {
+
+            $validEmail = $request->has('email') && $request->validate(['email' => 'email|unique:users']);
+
+            if ($validEmail) {
+                $user->email = $request->email;
+                $user->save();
+            }
+        }
+
+        return redirect()->to('/settings');
     }
 }

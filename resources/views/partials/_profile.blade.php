@@ -1,4 +1,10 @@
-<form method="post" class="grid" action="users/{{ auth()->user()->id }}/update">
+<form
+  method="post"
+  enctype="multipart/form-data"
+  action="users/{{ auth()->user()->id }}/profile/update"
+>
+  @csrf @method('put')
+
   <!-- name -->
   <div
     x-data="{readonly: true}"
@@ -18,6 +24,7 @@
         :class="readonly === false && 'border-gray-800 border-2'"
         class="px-2 font-semibold outline-0"
         name="name"
+        value="{{ $profile->name }}"
         x-ref="name"
         x-bind:readOnly="readonly"
       />
@@ -35,12 +42,7 @@
   </div>
 
   <!-- Avatar -->
-  <div
-    x-data="{readonly: true}"
-    type="button"
-    @click.outside="readonly = true"
-    class="grid grid-cols-8 py-5 border-b border-gray-100"
-  >
+  <div class="grid grid-cols-8 py-5 border-b border-gray-100">
     <div
       class="col-span-8 md:col-span-2 text-left pl-3 md:pl-0 grid items-center"
     >
@@ -49,20 +51,29 @@
 
     <div class="col-span-4 font-semibold text-lg">
       <img
-        src="{{ asset('/images/user.png') }}"
+        src="{{$profile->avatar ? asset('storage/' . $profile->avatar) : asset('/images/user.png') }}"
         class="w-8 h-8 ml-3 md:ml-2 rounded-full"
         alt=""
       />
     </div>
     <div class="col-span-4 md:col-span-2 flex ml-auto justify-end items-center">
-      <button
-        type="button"
-        @click="readonly = false ;$refs.name.focus();"
-        class="px-1 text-gray-800 font-bold mr-1"
+      <input
+        type="file"
+        accept="image/*"
+        name="avatar"
+        id="avatar"
+        class="hidden"
+      />
+
+      <label
+        for="avatar"
+        class="cursor-pointer px-1 text-gray-800 font-bold mr-1"
+        >Upload</label
       >
-        Update
+
+      <button type="button" class="pl-4 pr-2 text-gray-800 font-bold">
+        Remove
       </button>
-      <button class="pl-4 pr-2 text-gray-800 font-bold">Remove</button>
     </div>
   </div>
 
@@ -80,11 +91,16 @@
     </div>
 
     <div class="col-span-4 font-semibold text-lg">
+      @error('email')
+      <p class="text-red-500 text-sm pl-2">{{ $message }}</p>
+      @enderror
+
       <input
         type="email"
         :class="readonly === false && 'border-gray-800 border-2'"
-        class="px-2 font-semibold outline-0"
+        class="px-2 font-semibold outline-0 w-full"
         name="email"
+        value="{{ $profile->email }}"
         x-ref="email"
         x-bind:readOnly="readonly"
       />
@@ -119,6 +135,7 @@
         :class="readonly === false && 'border-gray-800 border-2'"
         class="px-2 font-semibold outline-0"
         name="job"
+        value="{{ $profile->job }}"
         x-ref="job"
         x-bind:readOnly="readonly"
       />
@@ -153,8 +170,11 @@
         :class="readonly === false && 'border-gray-800 border-2'"
         class="px-2 font-semibold outline-0"
         name="location"
+        value="{{ $profile->location }}"
         x-ref="location"
         x-bind:readOnly="readonly"
+        alt="ex: Canada, Toronto"
+        titlle="ex: Canada, Toronto"
       />
     </div>
     <div class="col-span-4 md:col-span-2 flex justify-end items-center">
@@ -183,12 +203,17 @@
 
     <div class="col-span-4 font-semibold text-lg">
       <input
-        type="text"
+        type="date"
         :class="readonly === false && 'border-gray-800 border-2'"
         class="px-2 font-semibold outline-0"
         name="birthday"
+        value="{{ $profile->birthday }}"
         x-ref="birthday"
         x-bind:readOnly="readonly"
+        placeholder="dd-mm-yyyy"
+        pattern="\d{4}-\d{2}-\d{2}"
+        alt="Provide a date in the format dd-mm-yyyy"
+        title="Provide a date in the format dd-mm-yyyy"
       />
     </div>
     <div class="col-span-4 md:col-span-2 flex justify-end items-center">
@@ -215,18 +240,20 @@
       <h3 class="text-gray-500">Bio</h3>
     </div>
 
-    <div class="col-span-6 font-semibold text-lg">
+    <div class="col-span-6 md:col-span-4 font-semibold text-lg">
       <textarea
         type="text"
         :class="readonly === false && 'border-gray-800 border-2'"
         class="w-full min-h-[100px] px-2 font-semibold outline-0 resize-none"
         name="bio"
+        x-text="'{{ $profile->bio }}'"
         x-ref="bio"
         x-bind:readOnly="readonly"
-      ></textarea>
+      >
+      </textarea>
     </div>
 
-    <div class="col-span-2 md:col-span-2 flex justify-end items-center">
+    <div class="col-span-2 flex justify-end items-center">
       <button
         type="button"
         @click="readonly = false ;$refs.bio.focus();"
@@ -246,20 +273,32 @@
   <div class="w-full text-xl">
     <!-- email -->
     <div class="flex items-center mb-4">
-      <h3 class="mr-3">Email:</h3>
-      <input class="scale-110" type="checkbox" name="email_visible" />
+      <input
+        class="scale-110"
+        type="checkbox"
+        value="1"
+        name="email_visible"
+        {{ $profile->email_visible === 1 ?  'checked' : '' }}
+      />
+      <h3 class="ml-3">Email</h3>
     </div>
     <!-- birthday -->
     <div class="flex items-center">
-      <h3 class="mr-3">Birthday:</h3>
-      <input class="scale-110" type="checkbox" name="birthday_visible" />
+      <input
+        class="scale-110"
+        type="checkbox"
+        value="1"
+        name="birthday_visible"
+        {{ $profile->birthday_visible === 1 ? 'checked' : '' }}
+      />
+      <h3 class="ml-3">Birthday</h3>
     </div>
   </div>
 
   <!-- submit button -->
   <button
     type="submit"
-    class="mt-10 justify-self-end w-full md:w-fit rounded-lg bg-gray-800 px-6 py-2 md:py-3 text-lg font-semibold text-white shadow-sm hover:bg-black hover:text-white transition-colors delay-50"
+    class="mt-10 float-right w-full md:w-fit rounded-lg bg-gray-800 px-6 py-2 md:py-3 text-lg font-semibold text-white shadow-sm hover:bg-black hover:text-white transition-colors delay-50"
   >
     Save Changes
   </button>

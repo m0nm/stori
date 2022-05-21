@@ -28,14 +28,14 @@
 
       <p class="text-center text-gray-600 mt-2">__________ or __________</p>
 
+      @error('login')
+      <p class="text-red-500 text-center">{{ $message }}</p>
+      @enderror
+
       {{-- username or email --}}
       <div class="mx-auto max-w-lg">
         <div class="py-1">
           <span class="px-1 text-sm text-gray-600">Username or Email</span>
-
-          @error('login')
-          <p class="text-red-500">{{ $message }}</p>
-          @enderror
 
           <input
             name="login"

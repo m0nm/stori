@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -47,6 +48,15 @@ class UserController extends Controller
         // create new user
         $user = User::create($validated);
 
+        // create user associated profile
+        Profile::create([
+            'user_id' => $user->id,
+            'email' => $user->email,
+            'birthday_visible' => 0,
+            'email_visible' => 0
+        ]);
+
+
         // login
         auth()->login($user);
 
@@ -71,7 +81,6 @@ class UserController extends Controller
      */
     public function edit()
     {
-        return view('user.update');
     }
 
     /**

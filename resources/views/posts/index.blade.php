@@ -9,7 +9,14 @@
     </div>
 
     <div class="md:px-0 px-4 w-full">
-      @foreach($posts as $post) <x-card :post="$post" /> @endforeach
+      @forelse($posts as $post)
+       <x-card :post="$post" /> 
+       @empty
+        <p class="text-center">There are no stories currently.</p>
+       
+       
+      @endforelse
+
     </div>
   </div>
 </x-layout>

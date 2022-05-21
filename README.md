@@ -1,1 +1,2 @@
-fix profile input responsive design
+finish bd input
+bd email visible

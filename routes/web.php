@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,13 +17,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 // user routes
-Route::get('/login', [UserController::class, 'login'])->middleware('guest');
-Route::get('/register', [UserController::class, 'create'])->middleware('guest');
-Route::get('/logout', [UserController::class, 'logout'])->middleware('auth');
-Route::post('/users', [UserController::class, 'store']);
-Route::post('/login', [UserController::class, 'auth']);
-Route::view('/reset-password', 'user.reset-password');
-Route::get('/settings', [UserController::class, 'edit'])->middleware('auth');
+Route::controller(UserController::class)->group(function () {
+    Route::get('/login', 'login')->middleware('guest');
+    Route::get('/register',  'create')->middleware('guest');
+    Route::get('/logout', 'logout')->middleware('auth');
+    Route::post('/users', 'store');
+    Route::post('/login', 'auth');
+    Route::view('/reset-password', 'user.reset-password');
+});
+
+
+// profile routes
+Route::get('/settings', [ProfileController::class, 'edit'])->middleware('auth');
+
+
+Route::put('/users/{id}/profile/update', [ProfileController::class, 'update']);
 
 
 // posts route
