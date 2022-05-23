@@ -19,6 +19,9 @@
         font-family: "Nunito", sans-serif;
         color: #111;
       }
+      
+      /* to not display account settings modal when alpinejs is still loading */
+      [x-cloak] { display: none !important; }
     </style>
 
     <!-- Alpine Plugins -->

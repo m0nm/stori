@@ -16,7 +16,7 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        $user = User::find(auth()->user()->id)->first();
+        $user = User::find(auth()->user()->id);
 
         $profile = $user->profile;
 
@@ -31,10 +31,9 @@ class ProfileController extends Controller
 
     public function update(Request $request, $id)
     {
-        $user = User::find($id)->first();
+        $user = User::find($id);
 
-
-        $fields = $request->all();
+        $fields = $request->except(['_token', '_method']);
 
         // filtering fields ------->
         $validFields = [];
@@ -70,7 +69,7 @@ class ProfileController extends Controller
         }
 
         // update profile ------->
-        $user->profile->update($validFields);
+        $user->profile()->update($validFields);
 
 
         // update email ------->

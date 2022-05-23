@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Models\User;
-
-
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -49,7 +48,7 @@ class UserController extends Controller
         $user = User::create($validated);
 
         // create user associated profile
-        Profile::create([
+        $user->profile()->create([
             'user_id' => $user->id,
             'email' => $user->email,
             'birthday_visible' => 0,
@@ -70,38 +69,6 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit()
-    {
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
     {
         //
     }
@@ -159,5 +126,76 @@ class UserController extends Controller
     // reset passowrd
     public function reset()
     {
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        $validFields = $request->validate(
+            ['oldPassword' => 'required', 'password' => 'required|confirmed|min:6'],
+            [
+                'oldPassword.required' => 'Current password is required!',
+                'password.required' => 'New password is required!'
+            ]
+
+        );
+
+        $validPassword = Hash::check($validFields['oldPassword'], $user->password);
+
+        if (!$validPassword) {
+            return back()->withErrors([
+                'oldPassword' => 'Incorrect password, Try again.'
+            ]);
+        }
+
+        // check if new password is the same as crrent password
+        $samePassword = Hash::check($validFields['password'], $user->password);
+
+        if ($samePassword) {
+            return back()->withErrors([
+                'password' => 'New password cannot be the same as the old password!'
+            ]);
+        }
+
+        // update password
+        $user->password = Hash::make($validFields['password']);
+        $user->save();
+
+        return redirect('/');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        $posts = $user->posts()->get();
+
+        if (isset($posts)) {
+            $botUser = User::where('username', '=', 'deleted')->get()->first();
+
+            foreach ($posts as $post) {
+                $post->user_id = $botUser->id;
+                $post->save();
+            }
+
+            $user->delete();
+            return redirect('/');
+        }
+
+        $user->delete();
+        return redirect('/');
     }
 }

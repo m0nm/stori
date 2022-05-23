@@ -1,6 +1,6 @@
 <x-layout>
   <div
-    x-data="{ tab: 'profile' }"
+    x-data="{ tab: $persist('profile') }"
     class="w-full text-center md:text-left md:w-4/5 mx-auto mt-16 px-2 md:px-8"
   >
     <h1 class="mb-4 text-3xl font-[800]">Settings</h1>

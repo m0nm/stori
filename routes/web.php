@@ -24,6 +24,8 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/users', 'store');
     Route::post('/login', 'auth');
     Route::view('/reset-password', 'user.reset-password');
+    Route::put('/users/{id}', 'update');
+    Route::delete('/users/{id}', 'destroy');
 });
 
 

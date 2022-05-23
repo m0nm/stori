@@ -24,7 +24,7 @@
         :class="readonly === false && 'border-gray-800 border-2'"
         class="px-2 font-semibold outline-0"
         name="name"
-        value="{{ $profile->name }}"
+        value="{{ $profile->name ?? '' }}"
         x-ref="name"
         x-bind:readOnly="readonly"
       />
@@ -73,10 +73,14 @@
         >Upload</label
       >
 
-      <!-- remove image -->        
-        <button type="submit" name="remove" class="pl-4 pr-2 text-gray-800 font-bold">
-          Remove
-        </button>
+      <!-- remove image -->
+      <button
+        type="submit"
+        name="remove"
+        class="pl-4 pr-2 text-gray-800 font-bold"
+      >
+        Remove
+      </button>
     </div>
   </div>
 
@@ -103,7 +107,7 @@
         :class="readonly === false && 'border-gray-800 border-2'"
         class="px-2 font-semibold outline-0 w-full"
         name="email"
-        value="{{ $profile->email }}"
+        value="{{ $profile->email ?? '' }}"
         x-ref="email"
         x-bind:readOnly="readonly"
       />
@@ -138,7 +142,7 @@
         :class="readonly === false && 'border-gray-800 border-2'"
         class="px-2 font-semibold outline-0"
         name="job"
-        value="{{ $profile->job }}"
+        value="{{ $profile->job ?? '' }}"
         x-ref="job"
         x-bind:readOnly="readonly"
       />
@@ -173,7 +177,7 @@
         :class="readonly === false && 'border-gray-800 border-2'"
         class="px-2 font-semibold outline-0"
         name="location"
-        value="{{ $profile->location }}"
+        value="{{ $profile->location ?? '' }}"
         x-ref="location"
         x-bind:readOnly="readonly"
         alt="ex: Canada, Toronto"
@@ -210,7 +214,7 @@
         :class="readonly === false && 'border-gray-800 border-2'"
         class="px-2 font-semibold outline-0"
         name="birthday"
-        value="{{ $profile->birthday }}"
+        value="{{ $profile->birthday ?? '' }}"
         x-ref="birthday"
         x-bind:readOnly="readonly"
         placeholder="dd-mm-yyyy"
@@ -249,7 +253,7 @@
         :class="readonly === false && 'border-gray-800 border-2'"
         class="w-full min-h-[100px] px-2 font-semibold outline-0 resize-none"
         name="bio"
-        x-text="'{{ $profile->bio }}'"
+        x-text="'{{ $profile->bio ?? '' }}'"
         x-ref="bio"
         x-bind:readOnly="readonly"
       >
@@ -281,8 +285,7 @@
         type="checkbox"
         value="1"
         name="email_visible"
-        {{ $profile->email_visible === 1 ?  'checked' : '' }}
-      />
+        {{ $profile->email_visible === 1 ? 'checked' : '' }} />
       <h3 class="ml-3">Email</h3>
     </div>
     <!-- birthday -->
@@ -292,8 +295,7 @@
         type="checkbox"
         value="1"
         name="birthday_visible"
-        {{ $profile->birthday_visible === 1 ? 'checked' : '' }}
-      />
+        {{ $profile->birthday_visible === 1 ? 'checked' : '' }} />
       <h3 class="ml-3">Birthday</h3>
     </div>
   </div>

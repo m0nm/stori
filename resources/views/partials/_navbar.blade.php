@@ -1,7 +1,7 @@
 <nav
   class="align-center flex min-h-[35px] w-full justify-between bg-primary mb-4 p-4 shadow-md"
 >
-  <a href="/" class="m-auto font-bold md:m-0">
+  <a href="/" class="m-auto font-bold md:m-0 outline-0">
     <img src="{{ asset('svg/Stori.svg') }}" width="75px" height="75px" alt="" />
   </a>
   <div class="flex items-center">
