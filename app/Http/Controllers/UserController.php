@@ -183,6 +183,8 @@ class UserController extends Controller
         $user = User::find($id);
         $posts = $user->posts()->get();
 
+
+        // send posts to bot 
         if (isset($posts)) {
             $botUser = User::where('username', '=', 'deleted')->get()->first();
 

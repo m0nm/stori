@@ -36,7 +36,7 @@
     <div class="flex items-center justify-between w-full">
       <a href="" class="flex items-center mt-2">
         <img
-          src="{{$post->user->profile ? ('/storage/' . $post->user->profile->avatar) : asset('images/user.png') }}"
+          src="{{$post->user->profile->avatar ? asset('storage/' . $post->user->profile->avatar) : asset('images/user.png') }}"
           alt=""
           class="rounded-full w-7 h-7"
         />

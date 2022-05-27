@@ -31,10 +31,12 @@ Route::controller(UserController::class)->group(function () {
 
 // profile routes
 Route::get('/settings', [ProfileController::class, 'edit'])->middleware('auth');
-
-
 Route::put('/users/{id}/profile/update', [ProfileController::class, 'update']);
 
 
 // posts route
-Route::get('/', [PostController::class, 'index']);
+Route::controller(PostController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::get('/dashboard', 'dashboard')->middleware('auth');
+    Route::delete('/posts/{id}', 'destroy');
+});

@@ -18,7 +18,7 @@
         <ul class="py-1 text-sm text-gray-900">
  
           <li>
-            <a href="#" class="px-4 py-2 flex items-center hover:underline hover:bg-gray-100 ">
+            <a href="/dashboard" class="px-4 py-2 flex items-center hover:underline hover:bg-gray-100 ">
               <img src="{{ asset('/svg/dashboard.svg') }}" class="w-3.5 h-3.5 mr-1" alt="">  
               Dashboard
             </a>

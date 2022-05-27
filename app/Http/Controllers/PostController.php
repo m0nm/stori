@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -19,6 +21,14 @@ class PostController extends Controller
         return view('posts.index')->with('posts', $posts);
     }
 
+    // display dashboard
+    public function dashboard()
+    {
+        $posts = User::find(Auth::user()->id)->posts;
+
+        return view('posts.dashboard')->with('posts', $posts);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -26,7 +36,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -82,6 +92,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::destroy($id);
+
+        return back();
     }
 }
