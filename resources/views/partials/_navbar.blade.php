@@ -12,7 +12,7 @@
       <div x-show="open" @click.outside="open = false" class="absolute top-10 right-8 translate-x-1/2 z-10 bg-white divide-y divide-gray-200 rounded shadow-lg">
         
         <div class="py-1">
-          <a href="#" class="block px-4 py-2 font-bold text-center text-sm text-gray-900 hover:underline hover:bg-gray-100">{{ '@' . auth()->user()->username }}</a>
+          <a href="/users/{{ auth()->user()->id }}" class="block px-4 py-2 font-bold text-center text-sm text-gray-900 hover:underline hover:bg-gray-100">{{ '@' . auth()->user()->username }}</a>
         </div>
        
         <ul class="py-1 text-sm text-gray-900">

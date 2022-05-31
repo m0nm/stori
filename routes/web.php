@@ -21,6 +21,7 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/login', 'login')->middleware('guest');
     Route::get('/register',  'create')->middleware('guest');
     Route::get('/logout', 'logout')->middleware('auth');
+    Route::get('/users/{id}', 'show');
     Route::post('/users', 'store');
     Route::post('/login', 'auth');
     Route::view('/reset-password', 'user.reset-password');
