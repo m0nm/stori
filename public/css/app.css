@@ -1205,6 +1205,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
+
 /* for ckeditor */
 .ck-content > blockquote,
 .ck-content > dl,

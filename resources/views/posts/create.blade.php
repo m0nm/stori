@@ -22,8 +22,13 @@
         {{-- tags, title nad body --}}
         <div class="w-full flex flex-col items-center">
             <div class="w-4/5">
-                <span>tags</span>
-                <input type="text" name="tags" class="px-2 py-1.5 rounded border-gray-400 border-2 w-full font-bold">
+                <label for="tags">tags</label>
+                <select class="multiple w-full rounded border-gray-400" name="tags[]" multiple="multiple">
+                  <option value="tech">tech</option>
+                  <option value="productivity">productivity</option>
+                  <option value="health">health</option>
+                  <option value="travel">travel</option>
+                </select>
             </div>
             
             <div class="flex flex-col w-4/5 mx-auto my-8">
@@ -65,6 +70,13 @@
         // set background image of frame
         cover.style.backgroundImage = `url(${bgUrl})`;
 });
+</script>
+
+{{-- select2 --}}
+<script>
+   $(document).ready(function() {
+        $('.multiple').select2();
+    });
 </script>
 
 {{-- ckeditor --}}

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,14 +16,13 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderBy('id', 'DESC')->get();
-
         return view('posts.index')->with('posts', $posts);
     }
 
     // display dashboard
     public function dashboard()
     {
-        $posts = User::find(Auth::user()->id)->posts;
+        $posts = Post::where('user_id', '=', Auth::user()->id)->orderBy('id', 'DESC')->get();
 
         return view('posts.dashboard')->with('posts', $posts);
     }
@@ -50,7 +48,7 @@ class PostController extends Controller
         $validFields = $request->validate(['title' => 'required', 'body' => 'required']);
 
         if ($request->has('tags')) {
-            $validFields['tags'] = $request->tags;
+            $validFields['tags'] = json_encode($request->tags);
         }
 
         $validFields['user_id'] = Auth::user()->id;
@@ -67,7 +65,6 @@ class PostController extends Controller
             $validFields['bg_img'] = $request->file('bg_img')->storeAs('covers', $fileName, 'public');
         }
 
-        dd($validFields);
         Post::create($validFields);
 
         return redirect('/');

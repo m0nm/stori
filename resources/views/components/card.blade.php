@@ -19,17 +19,17 @@
     >
 
     <p class="mt-5 text-lg max-h-1/4 line-clamp-3">
-      {{ $post->body }}
+     {!! $post->body !!}
     </p>
 
     <div class="my-3">
-      
-      @foreach (explode(',', $post->tags) as $tag )
-      <span
-        class="rounded px-1 py-0.5 bg-active text-sm text-white font-bold mr-1"
-        >{{ $tag }}</span
-      >
-      @endforeach
+      @if($post->tags)  
+        @foreach ( json_decode($post->tags) as $tag )
+        <span class="rounded px-1 py-0.5 bg-active text-sm text-white font-bold mr-1">
+          {{ $tag }}
+        </span>
+        @endforeach
+      @endif
      
     </div>
 
