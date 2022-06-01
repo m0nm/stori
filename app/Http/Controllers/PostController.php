@@ -47,7 +47,47 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validFields = $request->validate(['title' => 'required', 'body' => 'required']);
+
+        if ($request->has('tags')) {
+            $validFields['tags'] = $request->tags;
+        }
+
+        $validFields['user_id'] = Auth::user()->id;
+
+        // post bg image
+        $valideImage = $request->hasFile('bg_img') && $request->file('bg_img')->isValid();
+
+        if ($valideImage) {
+            $originalName = $request->bg_img->getClientOriginalName();
+            $fileName = pathinfo($originalName, PATHINFO_FILENAME);
+            $extension = $request->file('bg_img')->getClientOriginalExtension();
+            $fileName = $fileName . '_' . time() . '.' . $extension;
+
+            $validFields['bg_img'] = $request->file('bg_img')->storeAs('covers', $fileName, 'public');
+        }
+
+        dd($validFields);
+        Post::create($validFields);
+
+        return redirect('/');
+    }
+
+
+    // ckeditor images
+    public function upload(Request $request)
+    {
+        if ($request->hasFile('upload')) {
+            $originalName = $request->file('upload')->getClientOriginalName();
+            $fileName = pathinfo($originalName, PATHINFO_FILENAME);
+            $extension = $request->file('upload')->getClientOriginalExtension();
+            $fileName = $fileName . '_' . time() . '.' . $extension;
+
+            $request->file('upload')->move(public_path('storage/uploads'), $fileName);
+
+            $url = asset('storage/uploads/' . $fileName);
+            return response()->json(['fileName' => $fileName, 'uploaded' => 1, 'url' => $url]);
+        }
     }
 
     /**

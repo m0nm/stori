@@ -14,6 +14,10 @@
         <div class="py-1">
           <a href="/users/{{ auth()->user()->id }}" class="block px-4 py-2 font-bold text-center text-sm text-gray-900 hover:underline hover:bg-gray-100">{{ '@' . auth()->user()->username }}</a>
         </div>
+        
+        <div class="py-1">
+          <a href="/posts/create" class="block px-4 py-1 font-bold text-center text-sm text-gray-900 hover:underline hover:bg-gray-100">New story</a>
+        </div>
        
         <ul class="py-1 text-sm text-gray-900">
  

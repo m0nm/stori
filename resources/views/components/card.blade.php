@@ -3,7 +3,7 @@
 >
   <!-- blog image -->
   <div
-    class="col-span-1 rounded-t h-[200px] md:h-full bg-contain"
+    class="col-span-1 rounded-t h-[200px] md:h-full bg-cover bg-no-repeat"
     style="
       background-image: url('{{ $post->bg_img }}');
     "

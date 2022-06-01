@@ -39,5 +39,8 @@ Route::put('/users/{id}/profile/update', [ProfileController::class, 'update']);
 Route::controller(PostController::class)->group(function () {
     Route::get('/', 'index');
     Route::get('/dashboard', 'dashboard')->middleware('auth');
+    Route::get('/posts/create', 'create')->middleware('auth');
+    Route::post('/posts', 'store')->name('store');
+    Route::post('/posts/upload', 'upload')->name('ckeditor.upload');
     Route::delete('/posts/{id}', 'destroy');
 });

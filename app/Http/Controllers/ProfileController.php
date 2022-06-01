@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -42,7 +43,6 @@ class ProfileController extends Controller
         $validFields['email_visible'] = $request->boolean('email_visible');
         $validFields['birthday_visible'] = $request->boolean('birthday_visible');
 
-
         // remove the fields that are null
         foreach ($fields as $key => $value) {
             // if input values are not null 
@@ -54,22 +54,27 @@ class ProfileController extends Controller
         }
 
         // store avatar image -------->
-        $valideAvatar = $request->hasFile('avatar') && $request->file('avatar')->isValid();
+        $validAvatar = $request->hasFile('avatar') && $request->file('avatar')->isValid();
 
-        if ($valideAvatar) {
+        if ($validAvatar) {
             $originalName = $request->avatar->getClientOriginalName();
+            $fileName = pathinfo($originalName, PATHINFO_FILENAME);
+            $extension = $request->avatar->getClientOriginalExtension();
+            $fileName = $fileName . '_' . time() . '.' . $extension;
 
-            $validFields['avatar'] = $request->file('avatar')->storeAs('avatars', $originalName, 'public');
+            $validFields['avatar'] = $request->file('avatar')->storeAs('avatars', $fileName, 'public');
         }
+
+        // update profile ------->
+        $user->profile->update($validFields);
 
         // remove avatar image ------->
         if ($request->has('remove')) {
             $user->profile->avatar = null;
-            $user->save();
+            $user->profile->save();
+            return redirect()->to('/settings');
         }
 
-        // update profile ------->
-        $user->profile()->update($validFields);
 
 
         // update email ------->
@@ -82,6 +87,7 @@ class ProfileController extends Controller
                 $user->save();
             }
         }
+
 
         return redirect()->to('/settings');
     }
