@@ -54,9 +54,9 @@ class PostController extends Controller
         $validFields['user_id'] = Auth::user()->id;
 
         // post bg image
-        $valideImage = $request->hasFile('bg_img') && $request->file('bg_img')->isValid();
+        $validImage = $request->hasFile('bg_img') && $request->file('bg_img')->isValid();
 
-        if ($valideImage) {
+        if ($validImage) {
             $originalName = $request->bg_img->getClientOriginalName();
             $fileName = pathinfo($originalName, PATHINFO_FILENAME);
             $extension = $request->file('bg_img')->getClientOriginalExtension();

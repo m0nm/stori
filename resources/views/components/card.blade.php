@@ -1,5 +1,5 @@
 <div
-  class="w-full min-h-[280px] mb-10 grid grid-cols-1 md:grid-cols-4 shadow-lg border rounded-md cursor-pointer"
+  class="w-full min-h-[200px] mb-10 grid grid-cols-1 md:grid-cols-4 shadow-lg border rounded-md cursor-pointer"
 >
   <!-- blog image -->
   <div
@@ -10,17 +10,13 @@
   ></div>
 
   <!-- blog details -->
-  <div class="col-span-3 p-4">
+  <div class="relative col-span-3">
     <h1 class="font-bold text-2xl">
       {{ $post->title }}
     </h1>
     <span
       >{{ \Carbon\Carbon::parse($post->created_at)->format('F j, Y') }}</span
     >
-
-    <p class="mt-5 text-lg max-h-1/4 line-clamp-3">
-     {!! $post->body !!}
-    </p>
 
     <div class="my-3">
       @if($post->tags)  
@@ -30,11 +26,10 @@
         </span>
         @endforeach
       @endif
-     
     </div>
 
-    <div class="flex items-center justify-between w-full">
-      <a href="" class="flex items-center mt-2">
+    <div class="absolute bottom-7 flex items-center justify-between pr-3 w-full">
+      <a href="" class="flex items-center">
         <img
           src="{{$post->user->profile->avatar ? asset('storage/' . $post->user->profile->avatar) : asset('images/user.png') }}"
           alt=""
@@ -46,5 +41,6 @@
 
       <span>3 min read</span>
     </div>
+    
   </div>
 </div>

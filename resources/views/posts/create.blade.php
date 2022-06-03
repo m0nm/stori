@@ -1,9 +1,10 @@
 <x-layout>
-  <form method="post" action="/posts" enctype="multipart/form-data" class="w-full mt-10">
-      @csrf
-      <div class="w-4/5 px-2 mx-auto border rounded shadow-md">
+<div>        
+    <form method="post" action="/posts" enctype="multipart/form-data" class="w-full mt-10">
+        @csrf
+        <div class="w-4/5 mx-auto border rounded shadow-md">
         {{-- bg image --}}
-        <div style="background-image: url('/images/bg_img.png')" id="cover" class="bg-cover bg-no-repeat grid place-items-center w-full h-[300px] mb-8">
+        <div style="background-image: url('/images/bg_img.png')" id="cover" class="bg-cover bg-no-repeat grid place-items-center w-full h-[420px] mb-8">
             <input
             type="file"
             accept="image/*"
@@ -24,10 +25,10 @@
             <div class="w-4/5">
                 <label for="tags">tags</label>
                 <select class="multiple w-full rounded border-gray-400" name="tags[]" multiple="multiple">
-                  <option value="tech">tech</option>
-                  <option value="productivity">productivity</option>
-                  <option value="health">health</option>
-                  <option value="travel">travel</option>
+                    <option value="tech">tech</option>
+                    <option value="productivity">productivity</option>
+                    <option value="health">health</option>
+                    <option value="travel">travel</option>
                 </select>
             </div>
             
@@ -36,7 +37,7 @@
                 @error('title') 
                     <p class="text-sm text-left text-red-500">{{ $message }}</p>
                 @enderror
-                <input value="{{ old('title') }}" type="text" name="title" id="title" class="px-2 py-1.5 rounded border-gray-400 border-2 w-full font-bold">
+                <input value="{{ old('title') }}" type="text" name="title" id="title" class="px-2 py-1.5 rounded border outline-0 focus:border-gray-700 w-full font-bold">
             </div>
             
             <div class="flex flex-col w-4/5 mx-auto">
@@ -44,20 +45,19 @@
                 @error('body') 
                     <p class="text-sm text-left text-red-500">{{ $message }}</p>
                 @enderror
-                <textarea value="{{ old('body') }}" id="editor" type="text" name="body" class="ck-content">
-                    
+                <textarea id="editor" type="text" name="body" class="ck-content">
+                    {{ old('body') }}      
                 </textarea>
             </div>
         </div>
         
         {{-- submit --}}
         <div class="mt-8 float-right">
-            <button type="button" class="px-4 py-1.5 mr-2 font-bold rounded bg-gray-300 hover:bg-gray-200 text-gray-500 hover:text-gray-600" >Preview</button>
-            <button type="submit" class="px-4 py-1.5 font-bold rounded bg-gray-800 hover:bg-gray-900 text-white">Submit</button>
+            <button type="submit" name="submit" class="px-4 py-1.5 font-bold rounded bg-gray-800 hover:bg-gray-900 text-white">Publish</button>
         </div>
     </div>
-</form>
-
+    </form>
+    
 {{-- preview background image --}}
 <script>
     const cover = document.getElementById("cover");
@@ -70,6 +70,7 @@
         // set background image of frame
         cover.style.backgroundImage = `url(${bgUrl})`;
 });
+    
 </script>
 
 {{-- select2 --}}
