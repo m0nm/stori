@@ -39,3 +39,11 @@
   font-size: revert;
   font-weight: revert;
 }
+
+.image {
+  text-align: center;
+}
+
+.image > * {
+  margin: 0 auto;
+}

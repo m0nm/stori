@@ -65,9 +65,9 @@ class PostController extends Controller
             $validFields['bg_img'] = $request->file('bg_img')->storeAs('covers', $fileName, 'public');
         }
 
-        Post::create($validFields);
+        $newPost = Post::create($validFields);
 
-        return redirect('/');
+        return redirect("/posts/$newPost->id");
     }
 
 
@@ -95,7 +95,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+
+        return view('posts.show')->with('post', $post);
     }
 
     /**

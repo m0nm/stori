@@ -2,9 +2,9 @@
 <div>        
     <form method="post" action="/posts" enctype="multipart/form-data" class="w-full mt-10">
         @csrf
-        <div class="w-4/5 mx-auto border rounded shadow-md">
+        <div class="w-full md:w-4/5 mx-auto border rounded shadow-md">
         {{-- bg image --}}
-        <div style="background-image: url('/images/bg_img.png')" id="cover" class="bg-cover bg-no-repeat grid place-items-center w-full h-[420px] mb-8">
+        <div style="background-image: url('/images/bg_img.png')" id="cover" class="bg-contain md:bg-cover bg-no-repeat grid place-items-center w-full h-[420px] mb-8">
             <input
             type="file"
             accept="image/*"
@@ -52,7 +52,7 @@
         </div>
         
         {{-- submit --}}
-        <div class="mt-8 float-right">
+        <div class="mt-8 ml-auto mr-4 mb-4 w-fit">
             <button type="submit" name="submit" class="px-4 py-1.5 font-bold rounded bg-gray-800 hover:bg-gray-900 text-white">Publish</button>
         </div>
     </div>
@@ -70,7 +70,23 @@
         // set background image of frame
         cover.style.backgroundImage = `url(${bgUrl})`;
 });
+</script>
+
+{{-- alter before leaving --}}
+<script>
+    const form = document.querySelector('form')
     
+    let submit = false 
+    
+    form.addEventListener('submit', () => {
+        submit = true
+    })
+    
+    window.onbeforeunload = function(){
+        if(submit) return;
+        
+        return 'Are you sure you want to leave?';
+    };
 </script>
 
 {{-- select2 --}}
