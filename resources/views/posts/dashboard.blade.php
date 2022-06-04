@@ -84,7 +84,7 @@
                     x-data="{modal: false}"
                     class="relative flex items-center justify-center gap-3 mr-2"
                   >
-                    <a href="#" class="font-semibold">edit</a>
+                    <a href="/posts/{{ $post->id }}/edit" class="font-semibold">edit</a>
                     <button @click="modal = true" class="font-semibold text-red-500">delete</button>
 
                     <form action="/posts/{{ $post->id }}" method="POST">

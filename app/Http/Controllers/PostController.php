@@ -108,7 +108,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -120,7 +122,29 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validFields = $request->validate(['title' => 'required', 'body' => 'required']);
+
+        if ($request->has('tags')) {
+            $validFields['tags'] = json_encode($request->tags);
+        }
+
+        $validFields['user_id'] = Auth::user()->id;
+
+        // post bg image
+        $validImage = $request->hasFile('bg_img') && $request->file('bg_img')->isValid();
+
+        if ($validImage) {
+            $originalName = $request->bg_img->getClientOriginalName();
+            $fileName = pathinfo($originalName, PATHINFO_FILENAME);
+            $extension = $request->file('bg_img')->getClientOriginalExtension();
+            $fileName = $fileName . '_' . time() . '.' . $extension;
+
+            $validFields['bg_img'] = $request->file('bg_img')->storeAs('covers', $fileName, 'public');
+        }
+        $post = Post::find($id);
+        $post->update($validFields);
+
+        return redirect("/posts/$post->id");
     }
 
     /**
