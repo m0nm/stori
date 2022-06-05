@@ -5,7 +5,7 @@
 >
   <!-- blog image -->
   <div
-    class="col-span-2 rounded-t min-h-[200px] md:h-full bg-contain bg-no-repeat md:bg-repeat md:mr-2"
+    class="col-span-2 rounded-t min-h-[200px] md:h-full bg-center bg-cover bg-no-repeat md:mr-2"
     style="
       background-image: url('{{ $post->bg_img ? asset('storage/' . $post->bg_img) : asset('images/bg_img.png') }}');
     "
@@ -31,14 +31,14 @@
     </div>
 
     <div class="md:absolute bottom-5 flex items-center justify-between my-4 md:my-0 pr-3 w-full">
-      <a href="" class="flex items-center">
+      <a href="/authors/{{ $post->user->username }}" class="flex items-center">
         <img
           src="{{$post->user->profile->avatar ? asset('storage/' . $post->user->profile->avatar) : asset('images/user.png') }}"
           alt=""
           class="rounded-full w-7 h-7"
         />
 
-        <span class="ml-2 font-medium text-lg text-gray-600">{{ $post->user->name ?? $post->user->username }}</span>
+        <span class="ml-2 font-medium text-lg text-gray-600">{{ $post->user->profile->name ?? $post->user->username }}</span>
       </a>
 
       <span>3 min read</span>

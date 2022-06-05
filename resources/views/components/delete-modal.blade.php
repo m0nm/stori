@@ -1,11 +1,11 @@
 <div
         x-cloak
         x-show="modal"
-        class="fixed top-0 left-0 overflow-y-auto w-full h-full grid place-items-center bg-[rgba(0,0,0,0.4)]">
+        class="fixed top-0 left-0 z-10 overflow-y-auto w-full h-full grid place-items-center bg-[rgba(0,0,0,0.4)]">
       
         <div 
           @click.outside="modal = false" 
-          class="relative w-3/5 p-4 h-[320px] bg-primary rounded-lg">
+          class="relative w-full md:w-3/5 p-4 h-[400px] md:h-[320px] bg-primary rounded-lg">
           
           <div class="w-full text-center text-6xl text-red-500">
             <i class="fa-solid fa-triangle-exclamation"></i>

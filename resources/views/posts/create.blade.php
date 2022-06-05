@@ -4,7 +4,7 @@
         @csrf
         <div class="w-full md:w-4/5 mx-auto border rounded shadow-md">
         {{-- bg image --}}
-        <div style="background-image: url('/images/bg_img.png')" id="cover" class="bg-contain md:bg-cover bg-no-repeat grid place-items-center w-full h-[420px] mb-8">
+        <div style="background-image: url('/images/bg_img.png')" id="cover" class="bg-center bg-cover bg-no-repeat grid place-items-center w-full h-[420px] mb-8">
             <input
             type="file"
             accept="image/*"

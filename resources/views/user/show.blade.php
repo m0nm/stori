@@ -1,22 +1,30 @@
 <x-layout>
-    
-    
-    <div class="relative w-full h-full bg-primary">
-        
-        {{-- bg image --}}
-        <div style="background-image: url('https://wallpaperaccess.com/full/38582.jpg')" class="w-full h-1/3 -z-10">
+    <div class="w-full min-h-screen flex flex-col-reverse md:flex-row">
+        {{-- user posts --}}
+        <div class="w-full md:w-4/5 px-10">
+            @forelse ($user->posts->sortByDesc('created_at') as $post)
+                <x-card :post="$post" />
+            @empty
+                <p class="text-lg text-gray-700">This author has no stories yet </p>
+            @endforelse
         </div>
-    
-        {{-- profile --}}
-        <div class="bg-white rounded w-4/5 absolute top-1/2 px-8 py-2">
+        
+        {{-- user info --}}
+        <aside class="w-full md:w-1/4 md:h-screen p-8 border-l-2">
             
-            
-            <div class="relative w-full h-10">
-                <div class="absolute -top-1/2 rounded-full"></div>
+            <div class="mt-8 flex flex-col justify-center items-center">
+                <div class="w-32 h-32 rounded-full">
+                    <img src="{{ $user->profile->avatar ? asset('storage/' . $user->profile->avatar) : asset('images/bg_img.png') }}" class="rounded-full w-full h-full " alt="author avatar">
+                </div>
+                
+                <h2 class="mt-2 mb-4 font-semibold text-2xl">{{ $user->profile->name ?? $user->username }}</h2>
+                
+                <p class="text-sm text-gray-700">Joined at: {{ \Carbon\Carbon::parse($user->created_at)->format('F j, Y') }}</p>
+                <p class="text-gray-600 mt-8"> {{ $user->profile->bio }}</p>
             </div>
             
-        </div>
+        </aside>
         
-        
-    </div>
+    </div>    
+    
 </x-layout>

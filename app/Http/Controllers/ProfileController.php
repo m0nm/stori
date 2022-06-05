@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\DB;
 class ProfileController extends Controller
 {
 
+    // show profile 
+    public function show($username)
+    {
+        $user = User::where('username', $username)->first();
+
+        return view('user.show')->with('user', $user);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

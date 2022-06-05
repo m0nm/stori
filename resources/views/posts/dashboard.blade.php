@@ -1,11 +1,11 @@
 <x-layout>
-  <div class="w-full px-12 mt-12">
+  <div class="w-full px-2 mt-12">
     <h1 class="text-3xl font-extrabold mb-14">Dashboard</h1>
 
-    <div class="w-full h-screen flex border rounded shadow-xl relative">
-      <div class="mt-10 w-full flex">
+    <div class="w-full md:w-4/5 h-screen flex border rounded shadow-xl relative">
+      <div class="mt-10 w-full flex flex-col md:flex-row ">
         {{-- stats --}}
-        <aside class="w-1/6 h-full px-1 relative bg-primary rounded">
+        <aside class="w-full md:w-1/6 h-full px-1 relative bg-primary rounded">
           <div
             class="w-full h-9 py-1 items-center bg-gray-800 absolute -top-10 left-0 rounded-tl text-center text-white"
           >

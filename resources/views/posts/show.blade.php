@@ -1,10 +1,10 @@
 <x-layout>
   <div class="w-full">
-    <div class="w-4/5 bg-white rounded border mx-auto">
+    <div class="w-full md:w-4/5 bg-white rounded border mx-auto">
         {{-- bg image --}}
         <div 
             style="background-image: url('{{ $post->bg_img ? asset('/storage/' . $post->bg_img) : asset('images/bg_img.png') }}')" 
-            class="w-full h-[420px] bg-cover bg-no-repeat">
+            class="w-full h-[420px] bg-center bg-cover bg-no-repeat">
         </div>
         
         {{-- post content --}}
