@@ -19,7 +19,7 @@
       
           <div class="absolute bottom-5 right-4 flex items-center">
             <button @click="modal = false" type="button" class="rounded mr-4 px-5 py-1.5 text-lg font-semibold border">Cancel</button>
-            <button class="rounded px-5 py-1.5 text-lg text-white font-semibold border bg-red-600 hover:bg-red-700">Delete</button>
+            <button type="submit" class="rounded px-5 py-1.5 text-lg text-white font-semibold border bg-red-600 hover:bg-red-700">Delete</button>
           </div>
         </div>
       </div>

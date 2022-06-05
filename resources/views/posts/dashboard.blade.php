@@ -1,104 +1,78 @@
 <x-layout>
-  <div class="w-full px-2 mt-12">
-    <h1 class="text-3xl font-extrabold mb-14">Dashboard</h1>
-
-    <div class="w-full md:w-4/5 h-screen flex border rounded shadow-xl relative">
-      <div class="mt-10 w-full flex flex-col md:flex-row ">
-        {{-- stats --}}
-        <aside class="w-full md:w-1/6 h-full px-1 relative bg-primary rounded">
-          <div
-            class="w-full h-9 py-1 items-center bg-gray-800 absolute -top-10 left-0 rounded-tl text-center text-white"
-          >
-            <h3 class="font-semibold text-xl mb-8">Stats</h3>
-          </div>
-
+  
+  <div class="w-full px-0 md:px-8 mt-24">
+    <h1 class="text-center md:text-left text-3xl mb-12">Dashboard</h1>
+    
+    <div class="w-full md:w-[97%] min-h-[440px] pb-4 mx-auto flex flex-col md:flex-row rounded shadow-xl border">
+      {{-- stats --}}
+      <div class="relative w-full md:w-1/5 text-center bg-primary">
+        <div class="absolute -top-8 bg-gray-800 text-center md:rounded-tl h-8 w-full py-0.5">
+          <h3 class="text-white text-lg">Stats</h3>
+        </div>
+        
+        <div class="border-r">
           {{-- total posts --}}
-          <div
-            class="py-2 mt-10 border-b border-b-gray-200 rounded grid place-items-center"
-          >
+          <div class="mt-6">
             <i class="fa-solid fa-newspaper text-4xl"></i>
-            <span class="text-sm text-gray-500"> Total Stories</span>
-            <p class="text-2xl">13265</p>
+            <p class="text-sm text-gray-700 mb-1">Total Stories</p>
+            <p class="text-xl font-semibold">{{ count($posts) }}</p>
           </div>
-
-          {{-- total reactions --}}
-          <div
-            class="py-2 mt-10 border-b border-b-gray-200 rounded grid place-items-center"
-          >
+          
+          {{-- total reaction --}}
+          <div class="mt-6 mb-8">
             <i class="fa-solid fa-heart text-red-500 text-4xl"></i>
-            <span class="text-sm text-gray-500"> Total Reactions</span>
-            <p class="text-2xl">13265</p>
+            <p class="text-sm text-gray-700 mb-1">Total ٌReactions</p>
+            <p class="text-xl font-semibold">13</p>
           </div>
-
-          {{-- total comments --}}
-          <div
-            class="py-2 mt-10 border-b border-b-gray-200 rounded grid place-items-center"
-          >
-            <i class="fa-solid fa-comment-dots text-4xl text-gray-500"></i>
-            <span class="text-sm text-gray-500"> Total Comments</span>
-            <p class="text-2xl">13265</p>
-          </div>
-        </aside>
-
-        {{-- posts --}}
-        <div class="w-full relative">
-          <div
-            class="w-full h-9 py-1 items-center bg-gray-800 absolute -top-10 left-0 rounded-tr text-center text-white"
-          >
-            <h3 class="font-semibold text-xl mb-8">Stories</h3>
-          </div>
-
-          <table class="w-full">
-            <thead>
-              <tr>
-                {{-- post title --}}
-                <td class="w-3/4"></td>
-
-                {{-- post stats --}}
-                <td></td>
-
-                {{-- post actions --}}
-                <td></td>
-              </tr>
-            </thead>
-
-            <tbody>
-              @foreach ($posts as $post)
-              <div class="odd:bg-primary w-full h-10 pl-2 py-4 mb-4 border-b">
-                <div class="w-full flex items-center">
-                  {{-- post title --}}
-                  <div class="font-semibold text-lg w-3/4 truncate">
-                    {{ $post->title }}
+        </div>
+        
+      </div>
+      
+      {{-- posts --}}
+      <div class="relative w-full md:w-4/5 mt-4 md:mt-0 bg-white">
+        <div class="absolute -top-8 bg-gray-800 text-center md:rounded-tr h-8 w-full py-0.5 z-10">
+          <h3 class="text-white text-lg">Stories</h3>
+        </div>
+        
+        @foreach ($posts as $post)
+          <div class="w-full odd:bg-primary pl-4 md:px-1 py-2 grid grid-cols-6">
+              {{-- title --}}
+              <a href="/posts/{{ $post->id }}" class="text-xl font-semibold col-span-6 md:col-span-4">{{ $post->title }}</a>
+              
+              {{-- stats and actions --}}
+              <div class="col-span-6 md:col-span-2 flex justify-between mt-3 md:mt-0">
+                  {{-- stats --}}
+                  <div class="flex">
+                    <div class="flex items-center text-left mr-2">
+                        <i class="fa-solid fa-heart text-red-500 text-md mr-1"></i>
+                        <span>13</span>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <i class="fa-solid fa-comment text-gray-600 text-md mr-1"></i>
+                        <span>13</span>
+                    </div>
                   </div>
-                  {{-- post stats --}}
-                  <div class="mr-auto">
-                    12
-                    <i class="fa-solid fa-heart text-red-500 text-sm"></i>
-                    12
-                    <i
-                      class="fa-solid fa-comment-dots text-sm text-gray-500"
-                    ></i>
-                  </div>
-                  {{-- post actions --}}
-                  <div
-                    x-data="{modal: false}"
-                    class="relative flex items-center justify-center gap-3 mr-2"
-                  >
-                    <a href="/posts/{{ $post->id }}/edit" class="font-semibold">edit</a>
-                    <button @click="modal = true" class="font-semibold text-red-500">delete</button>
-
-                    <form action="/posts/{{ $post->id }}" method="POST">
+                  
+                  {{-- actions --}}
+                  <div x-data="{modal: false}" class="flex items-center mr-1 md:mr-4">
+                    <a href="/posts/{{ $post->id }}/edit">Edit</a>
+                    <button @click="modal = true" class="text-red-500 ml-3">Delete</button>
+                    
+                    <form action="/posts/{{ $post->id }}" method="post">
+                      {{-- delete modal --}}
                       @csrf @method('delete')
-                      <x-delete-modal title="Are you sure you want to delete this post ?" msg1="This action cannot be undone" />
+                      <x-delete-modal title="Are you sure you want to delete this story ?" msg1="This action cannot be undone." msg2=""/>
                     </form>
                   </div>
-                </div>
               </div>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
+            
+          </div>
+        @endforeach
+        
       </div>
     </div>
+    
   </div>
+  
 </x-layout>

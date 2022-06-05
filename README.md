@@ -1,7 +1,3 @@
 check favicon
 
-git: added pagination + profile page + (in progrss) fixed responsive styles
-
-redo dashboard
-
-fix responsivity
+dashboard total stats make it to 100k format
