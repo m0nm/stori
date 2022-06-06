@@ -25,10 +25,10 @@
             <div class="w-4/5">
                 <label for="tags">tags</label>
                 <select class="multiple w-full rounded border-gray-400" name="tags[]" multiple="multiple">
-                    <option {{ in_array('tech', json_decode($post->tags)) ? 'selected' : '' }} value="tech">tech</option>
-                    <option {{ in_array('productivity', json_decode($post->tags)) ? 'selected' : '' }} value="productivity">productivity</option>
-                    <option {{ in_array('health', json_decode($post->tags)) ? 'selected' : '' }} value="health">health</option>
-                    <option {{ in_array('travel', json_decode($post->tags)) ? 'selected' : '' }} value="travel">travel</option>
+                    <option {{$post->tags && in_array('tech', json_decode($post->tags)) ? 'selected' : '' }} value="tech">tech</option>
+                    <option {{$post->tags && in_array('productivity', json_decode($post->tags)) ? 'selected' : '' }} value="productivity">productivity</option>
+                    <option {{$post->tags && in_array('health', json_decode($post->tags)) ? 'selected' : '' }} value="health">health</option>
+                    <option {{$post->tags && in_array('travel', json_decode($post->tags)) ? 'selected' : '' }} value="travel">travel</option>
                 </select>
             </div>
             

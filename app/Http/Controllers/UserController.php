@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
 {
@@ -121,6 +123,68 @@ class UserController extends Controller
         return back()->withErrors(['login' => 'Invalid Credentials'])->onlyInput('login');
     }
 
+
+    // google redurect
+    public function googleRedirect()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    // google auth
+    public function googleAuth()
+    {
+        $googleUser = Socialite::driver('google')->user();
+
+        $user = User::updateOrCreate([
+            'email' => $googleUser->email,
+        ], [
+            'oauth_id' => $googleUser->id,
+            'oauth_type' => 'google',
+            'google_token' => $googleUser->token,
+            'google_refresh_token' => $googleUser->refreshToken,
+        ]);
+
+        // if it's a new user
+        if (!$user->username) {
+            $user->username = $googleUser->name;
+            $user->save();
+        }
+
+        Auth::login($user);
+
+        return redirect('/');
+    }
+
+    // github redurect
+    public function githubRedirect()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    // github auth
+    public function githubAuth()
+    {
+        $githubUser = Socialite::driver('github')->user();
+
+        $user = User::updateOrCreate([
+            'email' => $githubUser->email,
+        ], [
+            'oauth_id' => $githubUser->id,
+            'oauth_type' => 'github',
+            'github_token' => $githubUser->token,
+            'github_refresh_token' => $githubUser->refreshToken,
+        ]);
+
+        // if it's a new user
+        if (!$user->username) {
+            $user->username = $githubUser->name;
+            $user->save();
+        }
+
+        Auth::login($user);
+
+        return redirect('/');
+    }
 
     // reset passowrd
     public function reset()

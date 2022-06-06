@@ -41,7 +41,7 @@
         <span class="ml-2 font-medium text-lg text-gray-600">{{ $post->user->profile->name ?? $post->user->username }}</span>
       </a>
 
-      <span>3 min read</span>
+      <span>{{ estimatedReadTime($post->body) }} min read</span>
     </div>
     
   </div>

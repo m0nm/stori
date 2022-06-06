@@ -4,6 +4,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,10 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/login', 'login')->middleware('guest');
     Route::get('/register', 'create')->middleware('guest');
     Route::get('/logout', 'logout')->middleware('auth');
+    Route::get('/auth/google/redirect', 'googleRedirect');
+    Route::get('/auth/google/callback', 'googleAuth');
+    Route::get('/auth/github/redirect', 'githubRedirect');
+    Route::get('/auth/github/callback', 'githubAuth');
     Route::post('/users', 'store');
     Route::post('/login', 'auth');
     Route::view('/reset-password', 'user.reset-password');

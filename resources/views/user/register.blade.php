@@ -12,18 +12,20 @@
       {{-- social --}}
       <div class="w-full flex justify-center items-center">
         {{--  google --}}
-        <button
+        <a
+          href="/auth/google/redirect"
           class="inline-flex px-3 mr-4 w-12 h-12 items-center justify-center rounded-[50%] border border-gray-300 hover:border-gray-800 text-gray-600 hover:text-inherit text-sm font-semibold transition-colors delay-50"
         >
           <i class="fa-brands fa-google text-center text-2xl"></i>
-        </button>
+        </a>
 
-        {{--  facebook --}}
-        <button
+        {{--  github --}}
+        <a
+          href="/auth/github/redirect"
           class="inline-flex px-3 w-12 h-12 items-center justify-center rounded-[50%] border border-gray-300 hover:border-gray-800 text-gray-600 hover:text-inherit text-sm font-semibold transition-colors delay-50"
         >
-          <i class="fa-brands fa-facebook-f text-center text-2xl"></i>
-        </button>
+          <i class="fa-brands fa-github text-center text-2xl"></i>
+        </a>
       </div>
 
       <p class="text-center text-gray-600 mt-2">__________ or __________</p>
@@ -31,7 +33,7 @@
       {{-- username --}}
       <div class="mx-auto max-w-lg">
         <div class="py-1">
-          <span class="px-1 text-sm text-gray-600">Username</span>
+          <label for="username" class="px-1 text-sm text-gray-600">Username</label>
 
           @error('name')
           <p class="px-1 text-sm text-red-500">{{ $message }}</p>
@@ -39,6 +41,7 @@
 
           <input
             name="username"
+            id="username"
             value="{{ old('username') }}"
             type="text"
             class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-gray-600 focus:bg-white focus:outline-none"
@@ -47,7 +50,7 @@
 
         {{-- email --}}
         <div class="py-1">
-          <span class="px-1 text-sm text-gray-600">Email</span>
+          <label for="email" class="px-1 text-sm text-gray-600">Email</label>
 
           @error('email')
           <p class="px-1 text-sm text-red-500">{{ $message }}</p>
@@ -55,6 +58,7 @@
 
           <input
             name="email"
+            id="email"
             value="{{ old('email') }}"
             type="email"
             class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-gray-600 focus:bg-white focus:outline-none"
@@ -63,7 +67,7 @@
 
         {{-- password --}}
         <div class="py-1">
-          <span class="px-1 text-sm text-gray-600">Password</span>
+          <label for="password" class="px-1 text-sm text-gray-600">Password</label>
 
           @error('password')
           <p class="px-1 text-sm text-red-500">{{ $message }}</p>
@@ -72,6 +76,7 @@
           <input
             type="password"
             name="password"
+            id="password"
             value="{{ old('password') }}"
             class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-gray-600 focus:bg-white focus:outline-none"
           />
@@ -79,7 +84,7 @@
 
         {{-- password confirm --}}
         <div class="py-1">
-          <span class="px-1 text-sm text-gray-600">Password Confirm</span>
+          <label for="password_confirmation" class="px-1 text-sm text-gray-600">Password Confirm</label>
 
           @error('password_confirmation')
           <p class="px-1 text-sm text-red-500">{{ $message }}</p>
@@ -88,6 +93,7 @@
           <input
             type="password"
             name="password_confirmation"
+            id="password_confirmation"
             value="{{ old('password_confirmation') }}"
             class="text-md block w-full rounded-lg border-2 border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-gray-600 focus:bg-white focus:outline-none"
           />
