@@ -34,7 +34,7 @@
           <h3 class="text-white text-lg">Stories</h3>
         </div>
         
-        @foreach ($posts as $post)
+        @forelse ($posts as $post)
           <div class="w-full odd:bg-primary pl-4 md:px-1 py-2 grid grid-cols-6">
               {{-- title --}}
               <a href="/posts/{{ $post->id }}" class="text-xl font-semibold col-span-6 md:col-span-4">{{ $post->title }}</a>
@@ -68,7 +68,10 @@
               </div>
             
           </div>
-        @endforeach
+          
+          @empty
+          <a href="/posts/create" class="text-lg mx-auto mt-8 block w-fit">No stories yet, Why not make one ?</a>
+        @endforelse
         
       </div>
     </div>

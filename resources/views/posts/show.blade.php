@@ -27,7 +27,44 @@
             
         </div>
         
-    </div>
-  </div>    
+        {{-- comment section --}}
+        <div class="w-full p-4">
+            <h2 class="font-semibold text-3xl mt-12 mb-8">Discussion</h2>
+            @auth
+            <div class="w-full flex justify-center">
+                <div class="w-1/5 h-full p-2">
+                    @if (auth()->user()->profile->avatar)
+                    <img src="{{ asset('/storage/' . auth()->user()->profile->avatar) }}" alt="your avatar" class="rounded-full w-12 h-12">
+                    @else
+                    <img src="{{ asset('images/user.png') }}" alt="your avatar" class="rounded-full w-12 h-12">
+                    @endif
+                </div>
+                
+                <form action="/posts/{{ $post->id }}/comments" method="POST" class="w-4/5 flex flex-col px-4">
+                    @csrf
+                    
+                    @error('comment')
+                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                    @enderror
+                    <textarea name="comment" placeholder="Add to discussion" class="resize-none w-full p-2 outline-none border focus:border-gray-600"></textarea>
+                    <button class="px-4 py-1.5 w-fit ml-auto mt-4 font-bold rounded bg-gray-800 hover:bg-gray-900 text-white">Post</button>
+                </form>
+            </div>
+            @endauth
+            
+            @guest
+            <a href="/login" class="underline">Sign in to comment.</a>
+            @endguest
+            
+            {{-- comments --}}
+            @forelse ($post->comments as $comment)
+            <x-comment-card :user="$comment->user" :comment="$comment->comment"/>
+                @empty
+                <p class="text-lg text-center mt-8">No comments yet, Be the first.</p>
+                @endforelse
+            </div>
+            
+        </div>
     
+    </div>    
 </x-layout>

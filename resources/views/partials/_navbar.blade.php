@@ -9,7 +9,7 @@
     <div x-data="{open: false}" class="relative md:mr-4">
       <i @click="open = !open" class="fa-solid fa-user text-xl cursor-pointer text-gray-600"></i>
 
-      <div x-cloak x-show="open" @click.outside="open = false" class="absolute top-10 right-8 translate-x-1/2 z-10 bg-white divide-y divide-gray-200 rounded shadow-lg">
+      <div x-cloak x-show="open" @click.outside="open = false" class="absolute z-40 top-10 right-8 translate-x-1/2 bg-white divide-y divide-gray-200 rounded shadow-lg">
         
         <div class="py-1">
           <a href="/authors/{{ auth()->user()->username }}" class="block px-4 py-2 font-bold text-center text-sm text-gray-900 hover:underline hover:bg-gray-100">{{ '@' . auth()->user()->username }}</a>
