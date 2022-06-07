@@ -9,7 +9,9 @@
         
         {{-- post content --}}
         <div class="w-full p-4">
-            <h1 class="font-bold text-3xl mb-4">{{ $post->title }}</h1>
+            <h1 class="font-bold text-3xl">{{ $post->title }}</h1>
+            
+            <p class="float-right text-sm text-gray-700 mb-8">{{ \Carbon\Carbon::parse($post->created_at)->format('F j, Y') }}</p>
             
             @if ($post->tags)
              @foreach ( json_decode($post->tags) as $tag )
