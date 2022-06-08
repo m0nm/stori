@@ -25,14 +25,32 @@
                 {!! $post->body !!}
             </div>
             
+            {{-- like post --}}
+            @auth
+            <form action="/posts/{{ $post->id }}/toggleLike" method="post" class="float-right p-4 cursor-pointer">
+                @csrf
+                @if (auth()->user()->hasLiked($post))
+                <button class="flex items-center">
+                    <i class="fa-solid fa-heart text-2xl text-red-500"></i>
+                    <span class="ml-2 text-red-600">{{'+' . $post->likers->count() }}</span>
+                </button>
+                @else
+                <button class="flex items-center">
+                    <i class="fa-regular fa-heart text-2xl"></i>
+                    <span class="ml-2">{{'+' . $post->likers->count() }}</span>
+                </button>
+                @endif
+            </form>
+        @endauth
         </div>
         
         {{-- comment section --}}
         <div class="w-full p-4">
             <h2 class="font-semibold text-3xl mt-12 mb-8">Discussion</h2>
+            {{-- post comment --}}
             @auth
-            <div class="w-full flex justify-center">
-                <div class="w-1/5 h-full p-2">
+            <div class="w-full mx-auto flex justify-center">
+                <div class="h-full p-2">
                     @if (auth()->user()->profile->avatar)
                     <img src="{{ asset('/storage/' . auth()->user()->profile->avatar) }}" alt="your avatar" class="rounded-full w-12 h-12">
                     @else
@@ -40,7 +58,7 @@
                     @endif
                 </div>
                 
-                <form action="/posts/{{ $post->id }}/comments" method="POST" class="w-4/5 flex flex-col px-4">
+                <form action="/posts/{{ $post->id }}/comments" method="POST" class="w-4/5 flex flex-col px-4 mb-14">
                     @csrf
                     
                     @error('comment')
@@ -58,7 +76,7 @@
             
             {{-- comments --}}
             @forelse ($post->comments as $comment)
-            <x-comment-card :user="$comment->user" :comment="$comment->comment"/>
+            <x-comment-card :user="$comment->user" :comment="$comment"/>
                 @empty
                 <p class="text-lg text-center mt-8">No comments yet, Be the first.</p>
                 @endforelse

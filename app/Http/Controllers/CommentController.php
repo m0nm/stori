@@ -27,4 +27,16 @@ class CommentController extends Controller
 
         return back();
     }
+
+    // toggle like of comment
+    public function toggleLike($id)
+    {
+        $user = Auth::user();
+
+        $comment = Comment::find($id);
+
+        $user->toggleLike($comment);
+
+        return back();
+    }
 }

@@ -52,6 +52,7 @@ Route::controller(PostController::class)->group(function () {
     Route::get('/posts/{id}/edit', 'edit')->middleware('auth');
     Route::post('/posts', 'store')->name('store');
     Route::post('/posts/upload', 'upload')->name('ckeditor.upload');
+    Route::post('/posts/{id}/toggleLike', 'toggleLike');
     Route::put('/posts/{id}/update', 'update');
     Route::delete('/posts/{id}', 'destroy');
 });
@@ -59,4 +60,5 @@ Route::controller(PostController::class)->group(function () {
 // comment route
 Route::controller(CommentController::class)->group(function () {
     Route::post('/posts/{id}/comments', 'store');
+    Route::post('/comments/{id}/toggleLike', 'toggleLike');
 });

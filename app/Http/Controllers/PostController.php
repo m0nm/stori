@@ -20,7 +20,7 @@ class PostController extends Controller
         $query = request()->query('tag') ?? request()->query('search');
 
         if ($query) {
-            $posts = Post::latest()->where('title', 'like', "%$query%")->orWhere('tags', 'like', "%$query%")->paginate(12);
+            $posts = Post::where('title', 'like', "%$query%")->orWhere('tags', 'like', "%$query%")->latest()->paginate(12);
         }
 
         return view('posts.index')->with('posts', $posts);
@@ -152,6 +152,18 @@ class PostController extends Controller
         $post->update($validFields);
 
         return redirect("/posts/$post->id");
+    }
+
+    // toggle like of post
+    public function toggleLike($id)
+    {
+        $user = Auth::user();
+
+        $post = Post::find($id);
+
+        $user->toggleLike($post);
+
+        return back();
     }
 
     /**

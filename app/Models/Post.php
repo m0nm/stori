@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Overtrue\LaravelLike\Traits\Likeable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, Likeable;
 
     protected $fillable = ['title', 'body', 'bg_img', 'tags', 'user_id'];
 
