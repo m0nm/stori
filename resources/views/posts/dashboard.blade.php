@@ -15,14 +15,14 @@
           <div class="mt-6">
             <i class="fa-solid fa-newspaper text-4xl"></i>
             <p class="text-sm text-gray-700 mb-1">Total Stories</p>
-            <p class="text-xl font-semibold">{{ count($posts) }}</p>
+            <p class="text-xl font-semibold">{{ $posts->count() }}</p>
           </div>
           
           {{-- total reaction --}}
           <div class="mt-6 mb-8">
             <i class="fa-solid fa-heart text-red-500 text-4xl"></i>
             <p class="text-sm text-gray-700 mb-1">Total ٌReactions</p>
-            <p class="text-xl font-semibold">13</p>
+            <p class="text-xl font-semibold">{{ $totalReactions }}</p>
           </div>
         </div>
         
@@ -45,12 +45,12 @@
                   <div class="flex">
                     <div class="flex items-center text-left mr-2">
                         <i class="fa-solid fa-heart text-red-500 text-md mr-1"></i>
-                        <span>13</span>
+                        <span>{{ $post->likers->count() }}</span>
                     </div>
                     
                     <div class="flex items-center">
                         <i class="fa-solid fa-comment text-gray-600 text-md mr-1"></i>
-                        <span>13</span>
+                        <span>{{ $post->comments->count() }}</span>
                     </div>
                   </div>
                   

@@ -244,12 +244,13 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        $posts = $user->posts()->get();
+        $posts = $user->posts;
 
+        dd($posts);
 
         // send posts to bot 
         if (isset($posts)) {
-            $botUser = User::where('username', '=', 'deleted')->get()->first();
+            $botUser = User::where('username', '=', 'deleted')->first();
 
             foreach ($posts as $post) {
                 $post->user_id = $botUser->id;

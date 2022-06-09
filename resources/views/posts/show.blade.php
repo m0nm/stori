@@ -15,7 +15,7 @@
             
             @if ($post->tags)
              @foreach ( json_decode($post->tags) as $tag )
-                <span class="rounded px-1 py-0.5 bg-active text-sm text-white font-bold mr-1">
+                <span class="rounded px-1 py-0.5 bg-active text-sm text-white font-bold mt-1 mr-1">
                     {{ $tag }}
                 </span>
              @endforeach

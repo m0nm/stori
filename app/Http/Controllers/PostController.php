@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Overtrue\LaravelLike\Like;
 
 class PostController extends Controller
 {
@@ -23,7 +24,9 @@ class PostController extends Controller
             $posts = Post::where('title', 'like', "%$query%")->orWhere('tags', 'like', "%$query%")->latest()->paginate(12);
         }
 
-        return view('posts.index')->with('posts', $posts);
+        $topPosts = Post::withCount('likers')->orderBy('likers_count', 'desc')->get(5);
+
+        return view('posts.index')->with(['posts' => $posts, 'topPosts' => $topPosts]);
     }
 
     // display dashboard
@@ -31,7 +34,11 @@ class PostController extends Controller
     {
         $posts = Post::where('user_id', '=', Auth::user()->id)->orderBy('id', 'DESC')->get();
 
-        return view('posts.dashboard')->with('posts', $posts);
+        $user = Auth::user();
+
+        $totalReactions = Like::withType(Post::class)->whereRelation('likeable', 'user_id', $user->id)->count();
+
+        return view('posts.dashboard')->with(['posts' => $posts, 'totalReactions' => $totalReactions]);
     }
 
     /**
