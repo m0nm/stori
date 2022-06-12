@@ -1,3 +1,4 @@
 check favicon
+reset password
 check code, reponsi
-check user delete bot
+make readme

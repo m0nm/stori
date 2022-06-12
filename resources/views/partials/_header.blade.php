@@ -1,4 +1,4 @@
-<header class="w-full min-h-screen mt-12 px-2 md:px-0 mb-8">
+<header class="w-full max-h-screen mt-12 px-2 md:px-0 mb-8">
   
   <h1 class="text-2xl font-bold mb-6">Top Rated Stories</h1>
   

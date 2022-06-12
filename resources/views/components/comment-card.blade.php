@@ -8,11 +8,11 @@
         <img src="{{ asset('images/user.png') }}" alt="user avatar" class="rounded-full w-12 h-12">
         @endif
         
-        <h4 class="text-lg font-semibold mt-2">{{ $user->profile->name ?? $user->username }}</p>
+        <a href="/authors/{{ $user->username }}" class="text-lg text-center font-semibold mt-2">{{ $user->profile->name ?? $user->username }}</a>
     </div>
     
     {{-- comment --}}
-    <div class="w-full h-full mt-12 md:mt-0 pt-4 pl-2 md:pl-0 pb-12">
+    <div class="w-full h-full mt-4 md:mt-0 pt-4 pl-2 md:pl-0 pb-12">
         <p>{{ $comment->comment }}</p>
     </div>
     

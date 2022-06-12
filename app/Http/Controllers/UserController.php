@@ -246,7 +246,6 @@ class UserController extends Controller
         $user = User::find($id);
         $posts = $user->posts;
 
-        dd($posts);
 
         // send posts to bot 
         if (isset($posts)) {

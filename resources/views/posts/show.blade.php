@@ -9,13 +9,13 @@
         
         {{-- post content --}}
         <div class="w-full p-4">
-            <h1 class="font-bold text-3xl">{{ $post->title }}</h1>
+            <h1 class="font-bold text-3xl mb-3">{{ $post->title }}</h1>
             
             <p class="float-right text-sm text-gray-700 mb-8">{{ \Carbon\Carbon::parse($post->created_at)->format('F j, Y') }}</p>
             
             @if ($post->tags)
              @foreach ( json_decode($post->tags) as $tag )
-                <span class="rounded px-1 py-0.5 bg-active text-sm text-white font-bold mt-1 mr-1">
+                <span class="rounded px-1 py-0.5 bg-active text-sm text-white font-bold mr-1">
                     {{ $tag }}
                 </span>
              @endforeach
@@ -25,23 +25,38 @@
                 {!! $post->body !!}
             </div>
             
-            {{-- like post --}}
-            @auth
-            <form action="/posts/{{ $post->id }}/toggleLike" method="post" class="float-right p-4 cursor-pointer">
-                @csrf
-                @if (auth()->user()->hasLiked($post))
-                <button class="flex items-center">
-                    <i class="fa-solid fa-heart text-2xl text-red-500"></i>
-                    <span class="ml-2 text-red-600">{{'+' . $post->likers->count() }}</span>
-                </button>
-                @else
-                <button class="flex items-center">
-                    <i class="fa-regular fa-heart text-2xl"></i>
-                    <span class="ml-2">{{'+' . $post->likers->count() }}</span>
-                </button>
-                @endif
-            </form>
-        @endauth
+            {{-- author and like --}}
+            <div class="flex items-center justify-between w-full px-4 mt-6">
+                
+                {{-- author --}}
+                <a href="/authors/{{ $post->user->username }}" class="flex items-center">
+                    <img 
+                         src="{{ $post->user->profile->avatar ? asset('/storage/' . $post->user->profile->avatar) : asset('/images/user.png') }}"
+                         class="w-8 h-8 rounded-full" 
+                         alt="author avatar">
+                         
+                    <span class="ml-2">{{ $post->user->profile->name ?? $post->user->username }}</span>
+                </a>
+                
+                {{-- like post --}}
+                @auth
+                <form action="/posts/{{ $post->id }}/toggleLike" method="post" class="float-right py-4 cursor-pointer">
+                    @csrf
+                    @if (auth()->user()->hasLiked($post))
+                    <button class="flex items-center">
+                        <i class="fa-solid fa-heart text-2xl text-red-500"></i>
+                        <span class="ml-1 text-red-600">{{'+' . $post->likers->count() }}</span>
+                    </button>
+                    @else
+                    <button class="flex items-center">
+                        <i class="fa-regular fa-heart text-2xl"></i>
+                        <span class="ml-1">{{'+' . $post->likers->count() }}</span>
+                    </button>
+                    @endif
+                </form>
+                @endauth
+        
+        </div>
         </div>
         
         {{-- comment section --}}
@@ -71,7 +86,7 @@
             @endauth
             
             @guest
-            <a href="/login" class="underline">Sign in to comment.</a>
+            <a href="/login" class="underline block mb-14">Sign in to comment.</a>
             @endguest
             
             {{-- comments --}}

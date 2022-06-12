@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use Storage;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Storage as FacadeStorage;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
@@ -14,14 +16,27 @@ class PostFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+
     public function definition()
     {
+
+        // random bg_img
+        $url = 'https://source.unsplash.com/random';
+        $imageContent = file_get_contents($url);
+        $image = substr($url, strrpos($url, '/') + 1) . '_' . time() . '.png';
+
+        FacadeStorage::disk('public')->put('covers/' . $image, $imageContent);
+
+        // random tags
+        $tags = ['tech', 'health', 'productivity', 'travel'];
+        $randomTags = json_encode(array_rand(array_flip($tags), rand(2, 4)));
+
         return [
-            'title' => $this->faker->sentence(8),
-            'tags' => 'tech, health, travel',
-            'bg_img' => 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80',
-            'body' => $this->faker->text(900),
-            'user_id' => 1
+            'title' => $this->faker->sentence(6),
+            'tags' => $randomTags,
+            'bg_img' => "/covers/$image",
+            'body' => $this->faker->paragraphs(rand(5, 16), true),
         ];
     }
 }
