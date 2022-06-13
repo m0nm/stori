@@ -43,6 +43,19 @@
     ></script>
   </head>
   <body class="h-screen w-full">
+    
+    {{-- flash message notification --}}
+    @if (session('status'))
+    <div
+         x-data="{ show: true }" 
+         x-show="show" 
+         x-init="setTimeout(() => show = false, 3000)"  
+         class="absolute top-0 left-0 w-full px-4 py-0.5 bg-gray-800 text-white text-center font-semibold z-50">
+      <p>{{ session('status') }}</p>
+    </div>
+      
+    @endif
+    
     {{-- navbar --}}
     @include('partials._navbar')
 

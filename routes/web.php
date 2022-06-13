@@ -5,7 +5,6 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,18 +19,21 @@ use Laravel\Socialite\Facades\Socialite;
 
 // user routes
 Route::controller(UserController::class)->group(function () {
-    Route::get('/login', 'login')->middleware('guest');
-    Route::get('/register', 'create')->middleware('guest');
+    Route::view('/login', 'user.login')->middleware('guest');
+    Route::view('/register', 'user.register')->middleware('guest');
+    Route::view('/forgot-password', 'user.forgot-password')->middleware('guest');
+    Route::get('/reset-password/{token}', 'showResetPassword')->middleware('guest')->name('password.reset');
     Route::get('/logout', 'logout')->middleware('auth');
     Route::get('/auth/google/redirect', 'googleRedirect');
     Route::get('/auth/google/callback', 'googleAuth');
     Route::get('/auth/github/redirect', 'githubRedirect');
     Route::get('/auth/github/callback', 'githubAuth');
-    Route::post('/users', 'store');
-    Route::post('/login', 'auth');
-    Route::view('/reset-password', 'user.reset-password');
-    Route::put('/users/{id}', 'update');
-    Route::delete('/users/{id}', 'destroy');
+    Route::post('/users', 'store')->middleware('guest');
+    Route::post('/login', 'auth')->middleware('guest');
+    Route::post('/forgot-password', 'forgotPassword')->middleware('guest');
+    Route::post('/reset-password', 'resetPassword')->middleware('guest');
+    Route::put('/users/{id}', 'update')->middleware('auth');
+    Route::delete('/users/{id}', 'destroy')->middleware('auth');
 });
 
 

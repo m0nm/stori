@@ -1,7 +1,15 @@
 <x-layout>
   
   <div class="w-full px-0 md:px-8 mt-24">
-    <h1 class="text-center md:text-left text-3xl mb-12">Dashboard</h1>
+    
+    <div class="w-full mb-12 px-4 flex flex-col md:flex-row justify-between items-center ">
+      <h1 class="text-center md:text-left text-3xl mr-auto mb-4 md:mb-0">Dashboard</h1>
+      
+      <a 
+        href="/posts/create" 
+        class="block w-fit rounded-lg bg-gray-800 px-6 py-1.5 text-lg font-semibold text-white shadow-sm hover:bg-black hover:text-white transition-colors delay-50"
+        >New Story</a>
+    </div>
     
     <div class="w-full md:w-[97%] min-h-[440px] pb-4 mx-auto flex flex-col md:flex-row rounded shadow-xl border">
       {{-- stats --}}

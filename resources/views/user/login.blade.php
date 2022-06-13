@@ -78,8 +78,8 @@
           <span class="font-semibold text-black"> Join us! </span>
         </a>
 
-        <a href="/reset-password" class="text-sm border-gray-200 text-black">
-          reset password
+        <a href="/forgot-password" class="text-sm border-gray-200 text-black">
+          forgot password
         </a>
       </div>
     </form>
