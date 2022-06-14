@@ -13,6 +13,8 @@ Stori is a blogging platform built with Laravel with a full CRUD functionality a
 
 ## Live Demo
 
+[Click Here](https://stori-laravel.herokuapp.com)
+
 ## Features
 
 - responsive design
