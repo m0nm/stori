@@ -6,6 +6,10 @@
 
     <title>Stori | Where stories come to life</title>
     <meta name="description" content="A place to share thoughts and ideas." />
+    
+    {{-- favicon --}}
+    <link rel="icon" href="{{ url('favicon.ico') }}">
+    
     <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap"

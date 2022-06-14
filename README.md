@@ -1,17 +1,22 @@
-check favicon
-check code, reponsi
-make readme
-
-(test **repo** after push)
-
 <h1 style="text-align: center;">Stori</h1>
 <p style="text-align: center;">Share and connect your story with other 8 billion people</p>
 
 Stori is a blogging platform built with Laravel with a full CRUD functionality and a wide rich of features
 
+## Table of Contents
+
+- [Live Demo](#live-demo)
+- [Features](#features)
+- [Tech](#tech)
+- [Running locally](#running-locally)
+- [Screenshots](#screenshots)
+
+## Live Demo
+
 ## Features
 
-- register new account.
+- responsive design
+- new account registration functionality.
 - login with username or email and password.
 - Oauth2 (Google and Github) authentication.
 - password reset functionality.
@@ -22,10 +27,8 @@ Stori is a blogging platform built with Laravel with a full CRUD functionality a
 - react to a post.
 - add comment to a post.
 - react to a comment.
-
-## Pages
-
-put screenshots here
+- post filter by tag and search by keyword
+- ...
 
 ## Tech
 
@@ -41,6 +44,7 @@ This project is built with:
 
 - Clone this repo
 - rename '.env.example' to '.env'
+- run 'php artisan key:generate'
 - configure your database connection:
 
 '''
@@ -73,3 +77,34 @@ MAIL_FROM_NAME=
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 '''
+
+- run 'composer install'
+- run 'npm install'
+- run 'npm run watch'
+- run 'php artisan serve'
+
+## Screenshots
+
+Home page
+![image](screenshots/home.png)
+
+Register page
+![image](screenshots/register.png)
+
+Post page
+![image](screenshots/post.png)
+
+Create post page
+![image](screenshots/create.png)
+
+Dashboard page
+![image](screenshots/dashboard.png)
+
+Profile page
+![image](screenshots/profile.png)
+
+Profile settings page
+![image](screenshots/setting_profile.png)
+
+Account Settings page
+![image](screenshots/setting_account.png)

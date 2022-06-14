@@ -249,7 +249,7 @@ class UserController extends Controller
         $user->password = Hash::make($validFields['password']);
         $user->save();
 
-        return redirect('/');
+        return redirect('/')->with('status', 'Password updated successfully');
     }
 
     /**

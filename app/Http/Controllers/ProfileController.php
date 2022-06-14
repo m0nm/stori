@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -80,7 +78,7 @@ class ProfileController extends Controller
         if ($request->has('remove')) {
             $user->profile->avatar = null;
             $user->profile->save();
-            return redirect()->to('/settings');
+            return back()->with(['status' => 'Avatar removed successfully']);
         }
 
 
@@ -97,6 +95,6 @@ class ProfileController extends Controller
         }
 
 
-        return redirect()->to('/settings');
+        return back()->with(['status' => 'Profile updated successfully']);
     }
 }

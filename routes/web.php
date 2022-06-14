@@ -47,9 +47,9 @@ Route::controller(ProfileController::class)->group(function () {
 
 // posts route
 Route::controller(PostController::class)->group(function () {
+    Route::view('/posts/create', 'posts.create')->middleware('auth');
     Route::get('/', 'index');
     Route::get('/dashboard', 'dashboard')->middleware('auth');
-    Route::get('/posts/create', 'create')->middleware('auth');
     Route::get('/posts/{id}', 'show');
     Route::get('/posts/{id}/edit', 'edit')->middleware('auth');
     Route::post('/posts', 'store')->name('store');

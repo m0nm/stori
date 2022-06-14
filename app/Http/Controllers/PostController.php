@@ -41,15 +41,6 @@ class PostController extends Controller
         return view('posts.dashboard')->with(['posts' => $posts, 'totalReactions' => $totalReactions]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('posts.create');
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -158,7 +149,7 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->update($validFields);
 
-        return redirect("/posts/$post->id");
+        return redirect("/posts/$post->id")->with('status', 'Post updated successfully');
     }
 
     // toggle like of post
@@ -183,6 +174,6 @@ class PostController extends Controller
     {
         Post::destroy($id);
 
-        return back();
+        return back()->with('status', 'Post deleted successfully');
     }
 }
