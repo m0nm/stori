@@ -1,5 +1,5 @@
-<h1 style="text-align: center;">Stori</h1>
-<p style="text-align: center;">Share and connect your story with other 8 billion people</p>
+<h1 align="center" >Stori</h1>
+<p align="center" >Share and connect your story with other 8 billion people</p>
 
 Stori is a blogging platform built with Laravel with a full CRUD functionality and a wide rich of features
 
@@ -12,8 +12,6 @@ Stori is a blogging platform built with Laravel with a full CRUD functionality a
 - [Screenshots](#screenshots)
 
 ## Live Demo
-
-(could be a bit slow because it's hosted on shared hosting)
 [Click Here](http://stori.atwebpages.com)
 
 ## Features
@@ -45,23 +43,25 @@ This project is built with:
 
 ## Running locally
 
-- Clone this repo
+- clone this repo
+- run `composer install`
 - rename '.env.example' to '.env'
 - run 'php artisan key:generate'
 - configure your database connection:
 
-'''
+```
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=name
 DB_USERNAME=root
 DB_PASSWORD=
-'''
+```
+
 
 - configure your smtp mail service connection:
 
-'''
+```
 MAIL_MAILER=smtp
 MAIL_HOST=
 MAIL_PORT=587
@@ -70,18 +70,17 @@ MAIL_PASSWORD=
 MAIL_ENCRYPTION=ssl
 MAIL_FROM_ADDRESS=
 MAIL_FROM_NAME=
-'''
+```
 
 - configure your Oauth2 client id and secret
-  '''
-  GITHUB_CLIENT_ID=
-  GITHUB_CLIENT_SECRET=
+```
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
 
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
-'''
+```
 
-- run 'composer install'
 - run 'npm install'
 - run 'npm run watch'
 - run 'php artisan serve'
